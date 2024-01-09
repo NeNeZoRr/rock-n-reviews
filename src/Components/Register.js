@@ -1,27 +1,25 @@
+import React from "react";
 import { useState } from "react";
 
 export const Register = (props) => {
-    const [user, setUser] = useState('');
-    const [name, setName] = useState('');
-    const [pass, setPass] = useState('');
+    // const [user, setUser] = useState('');
+    // const [name, setName] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(user);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log(user);
+    // }
 
-    return(
+    return (
         <>
-        <form onSubmit={handleSubmit}>
-        <label for="Name">Your Name:</label>
-            <input value={name} onChange={(e) => setName(e.target.value)} type="Name" placeholder="Your Name"/>
-            <label for="user">User Name:</label>
-            <input value={user} onChange={(e) => setUser(e.target.value)} type="user Name" placeholder="User Name"/>
-            <button type="submit">Register</button>
-            <label for="pass">Password:</label>
-            <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*********"/>
-        </form>
-        <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
+            <form action="/user" method="POST">
+                <label htmlFor="name">Your Name:</label>
+                <input type="name" name="name" id="name" required placeholder="Your Name" />
+                <label htmlFor="userName">User Name:</label>
+                <input type="userName" name="userName" id="userName" required placeholder="User Name" />
+                <button type="submit">Register</button>
+            </form>
+            <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
         </>
     )
 }

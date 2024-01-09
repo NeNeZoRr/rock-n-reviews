@@ -1,21 +1,20 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-
-import Nav from 'react-bootstrap/Nav';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
 function Navigation() {
     return (
-        <Navbar className="bg-body-tertiary, justify-content-start">
+        <Navbar className="bg-body-tertiary justify-content-start">
             <Container>
-                <Navbar.Brand href="/">Rock-n-Reviews</Navbar.Brand>
-                    <Nav className="justify-content-end" activeKey="/home">
+                <Navbar.Brand as={Link} to="/">Rock-n-Reviews</Navbar.Brand>
+                <Nav className="justify-content-end" activeKey="/home">
                     <Nav.Item>
-                        <Nav.Link href="/Forum">Forum</Nav.Link>
+                        <Nav.Link as={Link} to="/Forum">Forum</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/Login_Register">Login/Register</Nav.Link>
+                        <Nav.Link as={Link} to="/Logreg">Login/Register</Nav.Link>
                     </Nav.Item>
-                    </Nav>
+                </Nav>
             </Container>
         </Navbar>
     );
