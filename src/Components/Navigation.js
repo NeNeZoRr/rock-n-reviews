@@ -5,20 +5,17 @@ import Nav from 'react-bootstrap/Nav';
 
 function Navigation() {
     return (
-        <Navbar className="bg-body-tertiary">
+      <Navbar className="bg-body-tertiary, justify-content-start">
             <Container>
                 <Navbar.Brand href="/">Rock-n-Reviews</Navbar.Brand>
-                <Nav className="justify-content-end link" activeKey="/home" >
+                    <Nav className="justify-content-end" activeKey="/home">
                     <Nav.Item>
-                        <Nav.Link  eventKey="/Forum">Forum</Nav.Link>
+                        <Nav.Link href="/Forum">Forum</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link  eventKey="/Reviews">Forum</Nav.Link>
+                        <Nav.Link href="/Login_Register">Login/Register</Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link eventKey="/Login_Register">Login/Register</Nav.Link>
-                    </Nav.Item>
-                </Nav>
+                    </Nav>
             </Container>
         </Navbar>
     );
