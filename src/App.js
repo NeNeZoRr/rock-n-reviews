@@ -43,8 +43,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
       <Router>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Forum" element={<Forum />} />
