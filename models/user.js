@@ -9,7 +9,11 @@ const userSchema = new Schema({
     name: {
         type: String,
         required: true
-    }
+    },
+    password: {
+        type: String,
+        required: true
+    },
 })
 
 const userData = mongoose.model("User", userSchema)
