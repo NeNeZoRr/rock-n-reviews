@@ -8,7 +8,7 @@ function Navigation() {
     return (
         <Navbar className="bg-body-tertiary justify-content-start">
             <Container>
-                <Navbar.Brand as={ Link } to="/">Rock-n-Reviews</Navbar.Brand>
+                <Navbar.Brand as={ link } to="/">Rock-n-Reviews</Navbar.Brand>
                 <Nav className="justify-content-end" activeKey="/home">
                     <Nav.Item>
                         <Nav.Link as={ Link } to="/Forum">Forum</Nav.Link>
