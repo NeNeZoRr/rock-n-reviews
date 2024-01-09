@@ -1,16 +1,25 @@
-import Search from "./Components/Search";
-import { useEffect, useState } from "react";
-import Home from "./Components/Home";
-import Navigation from "./Components/Navigation";
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
+import Navigation from "./Components/Navigation";
+import Home from './Components/Home';
+import Reviews from './Components/Reviews';
+import Forum from './Components/Forum';
+import Logreg from './Components/Login_register';
+// import Search from "./Components/Search";
+
+import { useEffect, useState } from "react";
+
+
 
 function App() {
     let [search, setSearch] = useState("");
     let [message, setMessage] = useState("search for music");
     let [data, setData] = useState([]);
-  
+
     //const API_URL = "https://itunes.apple.com/search?term=";
-  
+
     useEffect(() => {
       if (search) {
         const fetchData = async () => {
@@ -27,15 +36,26 @@ function App() {
         fetchData();
       }
     }, [search]);
-  
+
     const handleSearch = (e, term) => {
       e.preventDefault();
       setSearch(term);
     };
+
+
     return (
       <div className="App">
         <Navigation />
-      <Home />
+      <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Forum" element={<Forum />} />
+            <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/Logreg" element={<Logreg />} />
+        </Routes> 
+      </Router>
       </div>
     );
 }
+
+export default App;
