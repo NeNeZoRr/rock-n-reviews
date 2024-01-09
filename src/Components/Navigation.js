@@ -1,25 +1,23 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import { link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navigation from './Navigation';  
+import Home from './Home'; 
+import Forum from './Forum';
+import Logreg from './Login_register';
 
-function Navigation() {
+function App() {
     return (
-        <Navbar className="bg-body-tertiary justify-content-start">
-            <Container>
-                <Navbar.Brand as={ link } to="/">Rock-n-Reviews</Navbar.Brand>
-                <Nav className="justify-content-end" activeKey="/home">
-                    <Nav.Item>
-                        <Nav.Link as={ Link } to="/Forum">Forum</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link href="/Login_Register">Login/Register</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </Container>
-        </Navbar>
+        <Router>
+            <div className="App">
+                <Navigation />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/Forum" element={<Forum />} />
+                    <Route path="/Logreg" element={<Login_Register />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
-export default Navigation;
+export default App;
