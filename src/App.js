@@ -1,12 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import Reviews from './Components/Reviews';
+import Search from './Components/Search';
 import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   const [search, setSearch] = useState("");
@@ -30,6 +31,7 @@ function App() {
           console.error("Error fetching data:", error);
         }
       };
+
       fetchData();
     }
   }, [search]);

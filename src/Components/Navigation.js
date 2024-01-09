@@ -1,23 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navigation from './Navigation';  
-import Home from './Home'; 
-import Forum from './Forum';
-import Logreg from './Login_register';
+import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
-function App() {
+function Navigation() {
     return (
-        <Router>
-            <div className="App">
-                <Navigation />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/Forum" element={<Forum />} />
-                    <Route path="/Logreg" element={<Login_Register />} />
-                </Routes>
-            </div>
-        </Router>
+        <Navbar className="bg-body-tertiary justify-content-start">
+            <Container>
+                <Navbar.Brand as={Link} to="/">Rock-n-Reviews</Navbar.Brand>
+                <Nav className="justify-content-end" activeKey="/home">
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/Forum">Forum</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/Logreg">Login/Register</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+            </Container>
+        </Navbar>
     );
 }
 
-export default App;
+export default Navigation;
