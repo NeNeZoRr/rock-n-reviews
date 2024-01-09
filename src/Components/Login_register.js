@@ -1,5 +1,6 @@
 import  Login  from "./Login";
 import  Register  from "./Register";
+import { useState } from 'react'
 
 function Logreg() {
     const [currentForm, setCurrentForm] = useState('login')

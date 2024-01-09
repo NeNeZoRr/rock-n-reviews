@@ -1,11 +1,20 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Navigation from "./Components/Navigation";
+import Home from './Components/Home';
+import Reviews from './Components/Reviews';
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from "./Components/Navigation";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Search from "./Components/Search";
-import Home from "./Components/Home";
 import Forum from './Components/Forum';
+import Logreg from './Components/Login_register';
+// import Search from "./Components/Search";
+import { useEffect, useState } from "react";
+
 
 function App() {
   const [search, setSearch] = useState("");
@@ -24,6 +33,32 @@ function App() {
           } else {
             setMessage("Not Found");
           }
+
+        };
+        fetchData();
+      }
+    }, [search]);
+  
+    const handleSearch = (e, term) => {
+      e.preventDefault();
+      setSearch(term);
+    };
+
+
+    return (
+      <div className="App">
+        <Navigation />
+      <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Forum" element={<Forum />} />
+            <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/Logreg" element={<Logreg />} />
+        </Routes> 
+      </Router>         
+      </div>
+    );
+=======
         } catch (error) {
           console.error("Error fetching data:", error);
         }
