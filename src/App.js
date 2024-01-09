@@ -1,8 +1,12 @@
+import Navigation from "./Components/Navigation";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'
 import Search from "./Components/Search";
 import { useEffect, useState } from "react";
 import Home from "./Components/Home";
 import Navigation from "./Components/Navigation";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Forum from './Components/Forum';
 
 function App() {
     let [search, setSearch] = useState("");
@@ -35,22 +39,11 @@ function App() {
     return (
       <div className="App">
         <Navigation />
+      <Navigation />
+      Testing
+      <Forum/>
       <Home />
       </div>
     );
-=======
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Forum from './Components/Forum';
-
-function App() {
-  return (
-    <div className="App">
-      <Forum/>
-    </div>
-  )
-}
-
-
 
 export default App;
