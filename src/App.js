@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from "./Components/Navigation";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Search from "./Components/Search"
+import Search from "./Components/Search";
 import Home from "./Components/Home";
 import Forum from './Components/Forum';
 
@@ -29,7 +30,7 @@ function App() {
       };
       fetchData();
     }
-  }, [search]);
+  }, [Search]);
 
   const handleSearch = (e, term) => {
     e.preventDefault();
@@ -37,11 +38,22 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Navigation />
-      {/* Testing */}
-      <Home />
-    </div>
+    <Router>
+      <div className="App">
+        <Navigation />
+        <Switch>
+          <Route path="/" exact>
+            {}
+            <Home />
+          </Route>
+          <Route path="/Forum">
+            {}
+            <Forum />
+          </Route>
+          {}
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
