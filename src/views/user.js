@@ -14,7 +14,7 @@ function User() {
         }
         getUser()
         console.log(data)
-    }, [])
+    }, [data, _id])
     const display = data && (
         <div>
             <h1>Hello {data.name}</h1>

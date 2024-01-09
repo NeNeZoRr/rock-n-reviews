@@ -41,11 +41,12 @@ app.get('*', (req, res) => {
 
 // LISTEN
 
-const start = async () => {
-    await mongoose.connect(MONGO_URI);
-    console.log('connected to database')
-    app.listen(PORT, () => {
-    })
+const start = () => {
+    mongoose.connect(MONGO_URI)
+        .then(() => console.log('db connected'))
+        .catch(err => console.error(err));
+
+    app.listen(PORT, console.log(`listening on port ${PORT}`))
 }
 
 start();

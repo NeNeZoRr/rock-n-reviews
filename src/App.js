@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import React from "react";
 import User from "./views/user"
 // import { Login } from "./Login";
-import Register from "./Register";
+import { Register } from "./Register";
 
 
 function App() {
