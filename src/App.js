@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navigation from "./Components/Navigation";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Search from "./Components/Search";
+import Search from "./Components/Search"
 import Home from "./Components/Home";
 import Forum from './Components/Forum';
 
@@ -18,7 +18,6 @@ function App() {
           const uri = encodeURI(`https://itunes.apple.com/search?term=${search}`);
           const response = await fetch(uri);
           const resData = await response.json();
-
           if (resData.results.length > 0) {
             setData(resData.results);
           } else {
@@ -28,7 +27,6 @@ function App() {
           console.error("Error fetching data:", error);
         }
       };
-
       fetchData();
     }
   }, [search]);
@@ -42,7 +40,6 @@ function App() {
     <div className="App">
       <Navigation />
       {/* Testing */}
-      <Forum />
       <Home />
     </div>
   );
