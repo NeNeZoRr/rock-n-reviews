@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const Register = (props) => {
     const [user, setUser] = useState('');
@@ -22,3 +22,4 @@ export const Register = (props) => {
         </>
     )
 }
+export default Register;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export const Login = (props) => {
     const [user, setUser] = useState('');
@@ -19,3 +19,4 @@ export const Login = (props) => {
         </>
     )
 }
+export default Login;
