@@ -6,6 +6,7 @@ import Reviews from './Components/Reviews';
 import Search from './Components/Search';
 import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
+import Register from '.Components/Register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/Forum" element={<Forum />} />
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/Logreg" element={<Logreg />} />
+          <Route path="register" element={<Register />} />
         </Routes>
       </Router>
     </div>
