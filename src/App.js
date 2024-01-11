@@ -51,7 +51,7 @@ function App() {
           <Route path="/Forum" element={<Forum />} />
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/Logreg" element={<Logreg />} />
-          <Route path="register" element={<Register />} />
+
         </Routes>
       </Router>
     </div>
