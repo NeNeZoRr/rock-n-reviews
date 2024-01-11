@@ -4,6 +4,7 @@ export const Login = (props) => {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(user);
@@ -14,6 +15,8 @@ export const Login = (props) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="user">User Name:</label>
                 <input value={user} onChange={(e) => setUser(e.target.value)} type="user Name" placeholder="User Name" />
+                <label htmlFor="pass">Password:</label>
+                <input type="pass" name="pass" id="pass" required placeholder="********" />
                 <button type="submit">Log In</button>
             </form>
             <button onClick={() => props.onFormSwitch('register')}> Need to register?</button>

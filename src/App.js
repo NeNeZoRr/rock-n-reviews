@@ -13,6 +13,22 @@ function App() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("search for music");
   const [data, setData] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/user/1'); // Adjust the endpoint accordingly
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
 
   useEffect(() => {
     if (search) {
