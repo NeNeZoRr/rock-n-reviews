@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import Reviews from './Components/Reviews';
-import Search from './Components/Search';
+// import Search from './Components/Search';
 import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
-import Register from '.Components/Register'
+import Register from './Components/Register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -51,7 +51,7 @@ function App() {
           <Route path="/Forum" element={<Forum />} />
           <Route path="/Reviews" element={<Reviews />} />
           <Route path="/Logreg" element={<Logreg />} />
-
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>
