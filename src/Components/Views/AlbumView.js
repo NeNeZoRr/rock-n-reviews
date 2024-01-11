@@ -1,36 +1,39 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-function AlbumView( handleHome ) {
-    const [ albumData, setAlbumData ] = useState([])
-    const { id } = useParams()
+function AlbumView() {
+    const [albumData, setAlbumData] = useState([]);
+    const { id } = useParams();
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchData = async () => {
-            const url = `http://localhost:3000/album/${id}`
-            const response = await fetch(url)
-            const data = await response.json()
+            try {
+                const url = `http://localhost:3000/album/${id}`;
+                const response = await fetch(url);
+                const data = await response.json();
 
-            const songs = data.results.filter(item => item.wrapperType === 'track')
-            setAlbumData(songs)
-        }
-        fetchData()
-    }, [id])
+                const songs = data.results.filter(item => item.wrapperType === 'track');
+                setAlbumData(songs);
+            } catch (error) {
+                console.error('Error fetching album data:', error);
+            }
+        };
+        fetchData();
+    }, [id]);
 
-    const songDisplay = albumData.map(song => {
-            < div key={song.trackId}>
-                <p>{song.trackName}</p>
-            </div>
-    })
-    console.log(albumData)
-    console.log(songDisplay)
+    const songDisplay = albumData.map(song => (
+        <div key={song.trackId}>
+            <p>{song.trackName}</p>
+        </div>
+    ));
+
     return (
         <div>
             <p>Album Data Goes Here!</p>
             <p>ID: {id}</p>
             {songDisplay}
         </div>
-    )
+    );
 }
 
-export default AlbumView
+export default AlbumView;

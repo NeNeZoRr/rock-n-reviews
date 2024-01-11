@@ -34,11 +34,9 @@ function GalleryItem({ item }) {
     const detailView = () => {
         return (
             <div style={detailStyle}>
-                <h2>Song Title: <Link to={`/song/${item.trackId}`} > {item.trackName} </Link></h2> 
-                {/* 1496872375 */}
+                 <h2>Song Title: {view ? <Link to={`/song/${item.trackId}`}>{item.trackName}</Link> : item.trackName}</h2>
                 <h3>Artist: {item.artistName}</h3>
-                <h3>Album Title: <Link to={`/album/${item.collectionId}`} > {item.collectionName} </Link></h3>
-                {/* 1496872374 */}
+                <h3>Album Title: {view? <Link to={`/album/${item.collectionId}`} > {item.trackName}</Link> : item.collectionName}</h3>
                 <h4>Genre: {item.primaryGenreName}</h4>
                 <h4>Release Date: {item.releaseDate}</h4>
             </div>
@@ -50,12 +48,9 @@ console.log(item)
     return (
         <div onClick={() => setView(!view)}
             style={{'display': 'inline-block'}}>
-        
-            {/* This simple ternary shows the simple view when 'view' is false! */}
             {view ? detailView() : simpleView()}
-
         </div>
     )
-
 }
+
 export default GalleryItem
