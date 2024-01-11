@@ -8,13 +8,10 @@ import Logreg from './Components/Login_register';
 import AlbumView from "./Components/Views/AlbumView";
 import SongView from './Components/Views/SongView';
 import Search from './Components/Search';
-import Forum from './Components/Forum';
-import Logreg from './Components/Login_register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-  function App() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("search for music");
   const [data, setData] = useState([]);
