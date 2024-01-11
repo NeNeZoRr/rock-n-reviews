@@ -24,7 +24,7 @@ export const Register = (props) => {
         e.preventDefault()
         data.age = Number(data.age)
 
-        const url = `${process.env.BACKEND_URL}/user/register`
+        const url = `${process.env.BACKEND_URL}/users/register`
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -38,7 +38,7 @@ export const Register = (props) => {
 
         } else {
             if (errorMessage) setErrorMessage('')
-            navigate('/', { replace: true })
+
         }
 
     }
@@ -50,7 +50,7 @@ export const Register = (props) => {
                 <input onChange={handleChange} required name='userName' placeholder='User Name' value={data.name} />
                 <label htmlFor="pass">Password:</label>
                 <input onChange={handleChange} required name="password" placeholder="********" value={data.password} />
-                <button type="submit">Register</button>
+                <button onSubmit={handleSubmit} type="submit">Register</button>
             </form>
             <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
         </>
