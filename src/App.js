@@ -4,12 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navigation from "./Components/Navigation";
 import Home from './Components/Home';
 import Reviews from './Components/Reviews';
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navigation from "./Components/Navigation";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Search from "./Components/Search";
 import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
 import AlbumView from "./Components/Views/AlbumView";
@@ -33,5 +27,5 @@ function App() {
       </div>
     );
   }
-   
+
 export default App;

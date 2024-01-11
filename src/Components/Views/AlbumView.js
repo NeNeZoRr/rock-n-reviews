@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-function AlbumView() {
+function AlbumView( handleHome ) {
     const [ albumData, setAlbumData ] = useState([])
     const { id } = useParams()
 
@@ -18,15 +18,12 @@ function AlbumView() {
     }, [id])
 
     const songDisplay = albumData.map(song => {
-        return (
             < div key={song.trackId}>
                 <p>{song.trackName}</p>
             </div>
-        )
     })
     console.log(albumData)
     console.log(songDisplay)
-
     return (
         <div>
             <p>Album Data Goes Here!</p>

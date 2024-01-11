@@ -45,7 +45,7 @@ function GalleryItem({ item }) {
         )
     }
 
-// console.log(item)
+console.log(item)
 
     return (
         <div onClick={() => setView(!view)}
