@@ -1,30 +1,28 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
 
-export const Register = (props) => {
+function Register(props) {
 
-    const INIT_STATE = {
+    const init_state = {
         userName: '',
-        password: ''
+        pass: ''
     }
 
-    const navigate = useNavigate()
-
-    const [data, setData] = useState(INIT_STATE)
+    const [data, setData] = useState(init_state)
     const [errorMessage, setErrorMessage] = useState()
 
+    // const [userName, setUserName] = useState('');
+    // const [pass, setPass] = useState('');
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
-
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        data.age = Number(data.age)
+        console.log(data)
 
-        const url = `${process.env.BACKEND_URL}/users/register`
+        const url = `${process.env.REACT_APP_BACKEND_URL}/users/register`
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -32,28 +30,48 @@ export const Register = (props) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        })
+        }, console.log(url))
         if (response.status !== 201) {
             setErrorMessage('Error creating user')
 
         } else {
             if (errorMessage) setErrorMessage('')
-
         }
-
     }
 
     return (
         <>
-            <form action="/user" method="POST">
+            <form onSubmit={handleSubmit}>
+
                 <label htmlFor="userName">User Name:</label>
-                <input onChange={handleChange} required name='userName' placeholder='User Name' value={data.name} />
+                <input
+                    type="text"
+                    name="userName"
+                    id="userName"
+                    required
+                    placeholder="User Name"
+                    value={data.userName}
+                    onChange={handleChange}
+                />
+
                 <label htmlFor="pass">Password:</label>
-                <input onChange={handleChange} required name="password" placeholder="********" value={data.password} />
-                <button onSubmit={handleSubmit} type="submit">Register</button>
+                <input
+                    type="password"
+                    name="pass"
+                    id="pass"
+                    required
+                    placeholder="********"
+                    value={data.pass}
+                    onChange={handleChange}
+                />
+
+                <button type="submit">Register</button>
             </form>
-            <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
+
+            <button onClick={() => props.onFormSwitch('login')}>
+                Already have an account?
+            </button>
         </>
-    )
+    );
 }
-export default Register;
+export default Register
