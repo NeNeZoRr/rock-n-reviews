@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
-import CommentForm from './CommentForm';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react'
+import CommentForm from './CommentForm'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
 const CoverForum = () => {
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([])
 
     const handleCommentSubmit = (newComment) => {
-        setComments((prevComments) => [...prevComments, newComment]);
-    };
+        setComments((prevComments) => [...prevComments, newComment])
+    }
 
     return (
         <div>
             <h1>Cover Forum</h1>
             <CommentForm onCommentSubmit={handleCommentSubmit} />
-            {comments.map((comment, index) => (
-                <Card key={index} style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title>{`Comment by ${comment.author}`}</Card.Title>
-                        <Accordion>
-                            <Accordion.Item eventKey={`accordion-${index}`}>
-                                <Accordion.Header>Click here to see comments</Accordion.Header>
-                                <Accordion.Body>
-                                    <Card.Text>{comment.text}</Card.Text>
-                                    <Button variant="primary">Go</Button>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Accordion>
-                    </Card.Body>
-                </Card>
-            ))}
+            <Accordion>
+                {comments.map((comment, index) => (
+                    <Accordion.Item key={index} eventKey={`accordion-${index}`}>
+                        <Accordion.Header>{`Comment by ${comment.author}`}</Accordion.Header>
+                        <Accordion.Body>
+                            <Card.Text>{comment.text}</Card.Text>
+                            <Button variant="primary">Go</Button>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                ))}
+            </Accordion>
         </div>
-    );
-};
+    )
+}
 
-export default CoverForum;
+export default CoverForum

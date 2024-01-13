@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Carousel, Card, Row, Col, Navbar, Form, FormControl, Button } from 'react-bootstrap'
+import { Carousel, Card, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 async function fetchAlbumsAndSongs() {
@@ -9,12 +9,12 @@ async function fetchAlbumsAndSongs() {
 
     const [albumsResponse, songsResponse] = await Promise.all([
       fetch(albumsApiUrl),
-      fetch(songsApiUrl),
+      fetch(songsApiUrl)
     ])
 
     const [albumsData, songsData] = await Promise.all([
       albumsResponse.json(),
-      songsResponse.json(),
+      songsResponse.json()
     ])
 
     return { albums: albumsData.results, songs: songsData.results }
@@ -41,8 +41,6 @@ async function search(query, entity, limit) {
 function Home() {
   const [albums, setAlbums] = useState([])
   const [songs, setSongs] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
-
   useEffect(() => {
     const fetchData = async () => {
       const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchAlbumsAndSongs()
@@ -57,7 +55,7 @@ function Home() {
     <Row className="justify-content-md-center mt-3">
       {data.map((item) => (
         <Col key={item.trackId} md={3}>
-          <Card style={{ width: '15rem' }}>
+          <Card style={{ width: '18rem', marginLeft: '90px' }}>
             <Card.Img
               variant="top"
               src={item.artworkUrl100}
@@ -78,22 +76,6 @@ function Home() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" className="justify-content-center">
-        <Navbar.Brand href="/">Rock-n-Reviews</Navbar.Brand>
-        <Form inline>
-          <FormControl
-            type="text"
-            placeholder="Search"
-            className="mr-sm-2"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <Button variant="outline-primary" onClick={handleSearch}>
-            Search
-          </Button>
-        </Form>
-      </Navbar>
-
       <section className="carousel-section">
         <Carousel>
           {albums.map((album, index) => (
@@ -122,7 +104,7 @@ function Home() {
                 className="d-block w-100"
                 src={song.artworkUrl100}
                 alt={song.trackName}
-                style={{ height: '200px', objectFit: 'cover' }}
+                style={{ height: '300px', objectFit: 'cover' }}
               />
               <Carousel.Caption>
                 <h3>{song.trackName}</h3>
