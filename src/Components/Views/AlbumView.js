@@ -18,6 +18,7 @@ function AlbumView() {
             setAlbumData(data)
         }
         fetchData()
+        console.log(albumData)
     }, [id])
 
     const songDisplay = albumData.results.map(song => {
@@ -29,6 +30,7 @@ function AlbumView() {
                         <Card style={{ width: '15vw' }}>
                             <Card.Body>
                                 <Card.Title>
+                                    <img src={song.artworkUrl60} alt="album cover"/>
                                 <Card.Link href={`/song/${song.trackId}`}> {song.trackName} </Card.Link>
                                 </Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">{song.artistName}</Card.Subtitle>                  

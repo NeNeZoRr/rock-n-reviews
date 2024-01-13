@@ -13,9 +13,8 @@ const GalleryItem = ({ item }) =>{
                         <Card.Body>
                             <Card.Title></Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">{item.artistName}</Card.Subtitle>
-                            <Card.Text>
-                            </Card.Text>
-                            <Card.Link href={`/album/${item.collectionId}`}> {item.collectionName} </Card.Link>
+                            <img src={item.artworkUrl60} alt="album cover"/>
+                            <Card.Link href={`/album/${item.collectionId}`}> Album: {item.collectionName} </Card.Link>
                             <Card.Link href={`/song/${item.trackId}`}> {item.trackName} </Card.Link>
                         </Card.Body>
                     </Card>

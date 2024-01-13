@@ -24,7 +24,7 @@ function Home() {
         }
       }
       fetchData()
-      // console.log(data)
+      console.log(data)
     } 
     else {
       if (data) setData([])
