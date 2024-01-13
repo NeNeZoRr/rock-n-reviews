@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Search from './Search'
-import Gallery from './Gallery/Gallery'
+import Gallery from '../Covers/Cover'
 import { Container, Row, Col } from 'react-bootstrap'
 
 async function searchContent(query) {

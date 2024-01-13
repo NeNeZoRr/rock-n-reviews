@@ -13,15 +13,15 @@ async function lookupContentById(contentId, entity = 'song', limit = 5) {
     }
 }
 
-function AlbumView() {
+function AlbumCover() {
     const [albumData, setAlbumData] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const songs = await lookupContentById (id, 'album')
-                setAlbumData(songs)
+                const songs = await lookupContentById(id, 'album')
+                setAlbumData(songs);
             } catch (error) {
                 console.error('Error fetching album data:', error)
             }
@@ -29,7 +29,7 @@ function AlbumView() {
         fetchData()
     }, [id])
 
-    const songDisplay = albumData.map(song => (
+    const songDisplay = albumData.map((song) => (
         <div key={song.trackId}>
             <p>{song.trackName}</p>
         </div>
@@ -44,4 +44,4 @@ function AlbumView() {
     )
 }
 
-export default AlbumView
+export default AlbumCover

@@ -15,10 +15,10 @@ const CommentForm = ({ onCommentSubmit }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formAuthor">
-                <Form.Label>User:</Form.Label>
+                <Form.Label>Comment Review</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="Enter your comment here"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
@@ -28,7 +28,7 @@ const CommentForm = ({ onCommentSubmit }) => {
                 <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Leave your review or opinion here"
+                    placeholder="Leave your Comments here"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
