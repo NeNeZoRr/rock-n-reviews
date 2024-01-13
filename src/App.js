@@ -9,6 +9,7 @@ import Logreg from './Components/Login_Register'
 import Register from './Components/Register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { userContext } from './Components/User_Context'
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   const [message, setMessage] = useState("search for music");
   const [data, setData] = useState([]);
   const [user, setUser] = useState(null);
+
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -30,6 +33,8 @@ function App() {
 
     fetchUser();
   }, []);
+
+
 
 
   useEffect(() => {
@@ -61,17 +66,18 @@ function App() {
 
   return (
     <div className="App">
-
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Forum" element={<Forum />} />
-          <Route path="/Reviews" element={<Reviews />} />
-          <Route path="/Logreg" element={<Logreg />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
+      <userContext.Provider value={this.state.user}>
+        <Router>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Forum" element={<Forum />} />
+            <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/Logreg" element={<Logreg />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Router>
+      </userContext.Provider>
     </div>
   );
 }
