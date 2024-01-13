@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 function Register(props) {
 
@@ -8,8 +9,9 @@ function Register(props) {
         pass: ''
     }
 
-    const [data, setData] = useState(init_state)
-    const [errorMessage, setErrorMessage] = useState()
+    const navigate = useNavigate()
+    const [data, setData] = useState(init_state);
+    const [errorMessage, setErrorMessage] = useState();
 
     // const [userName, setUserName] = useState('');
     // const [pass, setPass] = useState('');
@@ -36,6 +38,7 @@ function Register(props) {
 
         } else {
             if (errorMessage) setErrorMessage('')
+            navigate('/', { replace: true })
         }
     }
 
@@ -74,4 +77,4 @@ function Register(props) {
         </>
     );
 }
-export default Register
+export default Register;

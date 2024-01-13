@@ -10,6 +10,7 @@ import Register from './Components/Register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+
 function App() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("search for music");
@@ -60,6 +61,7 @@ function App() {
 
   return (
     <div className="App">
+
       <Router>
         <Navigation />
         <Routes>
