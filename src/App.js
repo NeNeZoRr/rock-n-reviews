@@ -5,7 +5,7 @@ import Home from './Components/Home';
 import Reviews from './Components/Reviews';
 // import Search from './Components/Search';
 import Forum from './Components/Forum';
-import Logreg from './Components/Login_register'
+import Logreg from './Components/Login_Register'
 import Register from './Components/Register'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
