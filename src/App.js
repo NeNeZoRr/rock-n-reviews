@@ -8,6 +8,8 @@ import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { userContext } from './Components/User_Context';
+
 
 function App() {
   const [search, setSearch] = useState("");
@@ -26,8 +28,10 @@ function App() {
       }
     };
 
+
     fetchUser();
   }, []);
+
 
 
   useEffect(() => {
@@ -59,6 +63,7 @@ function App() {
 
   return (
     <div className="App">
+      <userContext.Provider value={this.state.user}>
       <Router>
         <Navigation />
         <Routes>
@@ -68,6 +73,7 @@ function App() {
           <Route path="/Logreg" element={<Logreg />} />
         </Routes>
       </Router>
+      </userContext.Provider>
     </div>
   );
 }
