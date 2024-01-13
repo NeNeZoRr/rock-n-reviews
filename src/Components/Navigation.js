@@ -1,29 +1,26 @@
 import React from 'react'
-import { Link, BrowserRouter } from 'react-router-dom';
-import { Navbar, Container, Nav } from 'react-bootstrap';
 
+export const Register = (props) => {
+  const [name, setName] = useState('')
+  const [userName, setUserName] = useState('')
 
-function Navigation() {
-    return (
-            <Navbar className="bg-body-tertiary">
-                <Container>
-                    <BrowserRouter>
-                    <Navbar.Brand as={Link} to="/">Rock-n-Reviews</Navbar.Brand>
-                    <Nav className="justify-content-end link" activeKey="/home" >
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="/Forum">Forum</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="/Reviews">Reviews</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="/Logreg">Login/Register</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    </BrowserRouter>
-                </Container>
-            </Navbar>
-    )
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(name, userName)
+  }
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Your Name:</label>
+        <input type="text" name="name" id="name" required placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <label htmlFor="userName">User Name:</label>
+        <input type="text" name="userName" id="userName" required placeholder="User Name" value={userName} onChange={(e) => setUserName(e.target.value)} />
+        <button type="submit">Register</button>
+      </form>
+      <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
+    </>
+  )
 }
 
-export default Navigation;
+export default Register
