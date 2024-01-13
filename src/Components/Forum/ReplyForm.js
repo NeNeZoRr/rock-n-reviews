@@ -19,7 +19,7 @@ function ReplyForm({ threadId }) {
             }
         } catch (error) {
             console.error("Error posting reply:", error)
-            alert("An error occurred")
+            alert("No Server 404")
         }
     }
 

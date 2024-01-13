@@ -9,13 +9,13 @@ async function fetchAlbumsAndSongs() {
 
     const [albumsResponse, songsResponse] = await Promise.all([
       fetch(albumsApiUrl),
-      fetch(songsApiUrl)
-    ])
+      fetch(songsApiUrl),
+    ]);
 
     const [albumsData, songsData] = await Promise.all([
       albumsResponse.json(),
-      songsResponse.json()
-    ])
+      songsResponse.json(),
+    ]);
 
     return { albums: albumsData.results, songs: songsData.results }
   } catch (error) {
@@ -24,23 +24,10 @@ async function fetchAlbumsAndSongs() {
   }
 }
 
-async function search(query, entity, limit) {
-  try {
-    const searchApiUrl = `https://itunes.apple.com/search?term=${query}&entity=${entity}&limit=${limit}`
-
-    const response = await fetch(searchApiUrl)
-    const searchData = await response.json()
-
-    return searchData.results
-  } catch (error) {
-    console.error(`Error with searching ${entity}s:`, error)
-    return []
-  }
-}
-
 function Home() {
   const [albums, setAlbums] = useState([])
   const [songs, setSongs] = useState([])
+
   useEffect(() => {
     const fetchData = async () => {
       const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchAlbumsAndSongs()
@@ -49,6 +36,12 @@ function Home() {
     }
 
     fetchData()
+
+    const interval = setInterval(() => {
+      fetchData()
+    }, 10000)
+
+    return () => clearInterval(interval)
   }, [])
 
   const renderCard = (data, type) => (
