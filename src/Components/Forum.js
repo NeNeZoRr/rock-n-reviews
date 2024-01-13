@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import CommentForm from './CommentForm'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 const Forum = () => {
-    const [comments, setComments] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('ITUNEURL')
-                const data = await response.json();
-                const initialComments = data.map((item) => ({
-                    author: 'User',
-                    link: item.url,
-                    text: item.title,
-                }))
-                setComments(initialComments);
-            } catch (error) {
-                console.error('Error fetching data:', error)
-            }
-        }
-
-        fetchData()
-    }, [])
+    const [comments, setComments] = useState([])
 
     const handleCommentSubmit = (newComment) => {
         setComments((prevComments) => [...prevComments, newComment])
-    };
+    }
 
     return (
         <div>
@@ -42,11 +23,8 @@ const Forum = () => {
                             <Accordion.Item eventKey={`accordion-${index}`}>
                                 <Accordion.Header>Click to see review</Accordion.Header>
                                 <Accordion.Body>
-                                    {comment.link && (
-                                        <Card.Img variant="top" src={comment.link} alt="Album Cover" />
-                                    )}
                                     <Card.Text>{comment.text}</Card.Text>
-                                    <Button variant="primary" href={comment.link} target="_blank">
+                                    <Button variant="primary">
                                         Go
                                     </Button>
                                 </Accordion.Body>

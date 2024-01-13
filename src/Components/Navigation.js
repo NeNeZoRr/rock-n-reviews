@@ -1,26 +1,19 @@
 import React from 'react'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 
-export const Register = (props) => {
-  const [name, setName] = useState('')
-  const [userName, setUserName] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(name, userName)
-  }
-
+function Navigation () {
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Your Name:</label>
-        <input type="text" name="name" id="name" required placeholder="Your Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <label htmlFor="userName">User Name:</label>
-        <input type="text" name="userName" id="userName" required placeholder="User Name" value={userName} onChange={(e) => setUserName(e.target.value)} />
-        <button type="submit">Register</button>
-      </form>
-      <button onClick={() => props.onFormSwitch('login')}>Already have an account?</button>
-    </>
+    <Navbar className="bg-body-teriary">
+      <Container>
+        <Navbar.Brand href="/">Rock-n-Reviews</Navbar.Brand>
+        <Nav className="justify-content-end link" activeKey="/home">
+          <Nav.Link href="/forum">Forum</Nav.Link>
+          <Nav.Link href="/reviews">Reviews</Nav.Link>
+          <Nav.Link href="/logreg">Login/Register</Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
   )
 }
 
-export default Register
+export default Navigation

@@ -3,13 +3,12 @@ import { useParams } from 'react-router-dom'
 
 function AlbumView() {
     const [albumData, setAlbumData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `http://localhost:3000/album/${id}`
+                const url = `https://itunes.apple.com/lookup?id=${id}&entity=album`
                 const response = await fetch(url)
                 const data = await response.json()
 
@@ -17,11 +16,9 @@ function AlbumView() {
                 setAlbumData(songs)
             } catch (error) {
                 console.error('Error fetching album data:', error)
-            } finally {
-                setIsLoading(false)
             }
         }
-        fetchData();
+        fetchData()
     }, [id])
 
     const songDisplay = albumData.map(song => (
@@ -32,15 +29,9 @@ function AlbumView() {
 
     return (
         <div>
-            {isLoading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
-                    <h2>Album Details</h2>
-                    <p>ID: {id}</p>
-                    {songDisplay}
-                </>
-            )}
+            <h1>Album Data Goes Here!</h1>
+            <p>ID: {id}</p>
+            {songDisplay}
         </div>
     )
 }

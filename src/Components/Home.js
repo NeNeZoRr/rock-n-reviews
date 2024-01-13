@@ -1,67 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import Search from './Search';
-import Gallery from './Gallery/Gallery';
+import React, { useState, useEffect } from 'react'
+import { Carousel, Card, Container, Row, Col } from 'react-bootstrap'
 
 function Home() {
-  const [search, setSearch] = useState('');
-  const [message, setMessage] = useState('Search for music');
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  cosnt [albums, setAlbums] = useState([])
+  cosnt [songs, setSongs] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
+    const fetchAlbumAndSongs = async () => {
       try {
-        if (search) {
-          const uri = encodeURI(`https://itunes.apple.com/search?term=${search}`);
-          const response = await fetch(uri);
+        const albumResponse = await fetch('https://itunes.apple.com/search?term=album&entity=album&limit=5')
+        const albumData = await albumResponse.json()
+        setAlbums(albumsData.results)
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-
-          const resData = await response.json();
-
-          if (resData.results.length > 0) {
-            setData(resData.results);
-            setMessage('Here are your results');
-          } else {
-            setData([]);
-            setMessage('Not Found');
-          }
-        } else {
-          if (data.length > 0) setData([]);
-          setMessage('Search for music');
-        }
+        const songResponse = await fetch('https://itunes.apple.com/search?term=song&entity=song&limit=5')
+        const songData = await songResponse.json()
+        setSongs(songsData.results)
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setData([]);
-        setMessage('An error occurred while fetching data. Please try again.');
-      } finally {
-        setIsLoading(false);
+        console.error('Error fetching data:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, [search]);
+    fetchAlbumAndSongs()
+  }, [])
 
-  const handleSearch = (term) => {
-    setSearch(term);
-  };
+  const renderCarouselItems = (data) => {
+    return data.map((item) => (
+      <Carousel.Item key={item.trackId}>
+        <img
+          className="d-block w-100"
+          src={item.artworkUrl100}
+          alt={item.collectionName}
+        />
+        <Carousel.Caption>
+          <h3>{item.collectionName}</h3>
+          <p>{item.artistName}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    ))
+  }
+
+  const renderCardItems = (data) => {
+    return data.map((item) => (
+      <Col key={item.trackId} xs={12} md={4}>
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={item.artworkUrl100} alt={item.collectionName} />
+          <Card.Body>
+            <Card.Title>{item.collectionName}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{item.artistName}</Card.Subtitle>
+          </Card.Body>
+        </Card>
+      </Col>
+    ))
+  }
 
   return (
-    <div>
-      <h1>Welcome to Rock-n-Reviews</h1>
-      <p>Join us and start a conversation about the music that inspires you or your favorite artists.</p>
-      <Search handleSearch={handleSearch} message={message} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <Gallery data={data} />
-      )}
-    </div>
-  );
+    <Container>
+      <Row className="mt-5">
+        <Col>
+          <h2>Featured Albums</h2>
+          <Carousel>
+            {renderCarouselItems(albums)}
+          </Carousel>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col>
+          <h2>Featured Songs</h2>
+          <Row>
+            {renderCardItems(songs)}
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+    )
 }
 
-export default Home;
+export default Home

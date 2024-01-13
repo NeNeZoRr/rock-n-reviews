@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-export const Login = (props) => {
+const Login = (props) => {
     const [user, setUser] = useState('');
 
     const handleSubmit = (e) => {
@@ -19,4 +19,5 @@ export const Login = (props) => {
         </>
     )
 }
+
 export default Login;

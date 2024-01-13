@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 function SongView() {
-    const { id } = useParams()
+    const { id } = useParams();
     const [songData, setSongData] = useState({})
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = 'http://localhost:3000/song/${id}'
+                const url = `https://itunes.apple.com/lookup?id=${id}`
                 const response = await fetch(url)
                 const data = await response.json()
 
@@ -19,7 +19,6 @@ function SongView() {
         }
         fetchData()
     }, [id])
-
 
     return (
         <div>
