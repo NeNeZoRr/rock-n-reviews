@@ -11,7 +11,7 @@ function Home() {
   useEffect(() => {
     if (search) {
       const fetchData = async () => {
-        const url = encodeURI(`https://itunes.apple.com/search?term=${search}`)
+        const url = encodeURI(`https://itunes.apple.com/search?term=${search}&entity=allArtist&attribute=allArtistTerm&entity=album`)
         const response = await fetch(url)
         const data = await response.json()
   
@@ -23,8 +23,8 @@ function Home() {
           setMessage('Not Found')
         }
       }
-  
       fetchData()
+      // console.log(data)
     } 
     else {
       if (data) setData([])

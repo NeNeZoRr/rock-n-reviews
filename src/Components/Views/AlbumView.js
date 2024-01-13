@@ -1,33 +1,50 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-function AlbumView( handleHome ) {
-    const [ albumData, setAlbumData ] = useState([])
+function AlbumView() {
+    const [ albumData, setAlbumData ] = useState({ results: []})
     const { id } = useParams()
 
     useEffect (() => {
         const fetchData = async () => {
-            const url = `http://localhost:3000/album/${id}`
+            const url = `https://itunes.apple.com/lookup?id=${id}&entity=album&entity=song`
             const response = await fetch(url)
             const data = await response.json()
 
-            const songs = data.results.filter(item => item.wrapperType === 'track')
-            setAlbumData(songs)
+            setAlbumData(data)
         }
         fetchData()
     }, [id])
 
-    const songDisplay = albumData.map(song => {
+    const songDisplay = albumData.results.map(song => {
+        return (
             < div key={song.trackId}>
-                <p>{song.trackName}</p>
+                <Container>
+                <Row xs={1} md={4} className="g-4" style={{ margin:'1vw', justifyContent: 'center'}}>
+                    <Col>
+                        <Card style={{ width: '15vw' }}>
+                            <Card.Body>
+                                <Card.Title>
+                                <Card.Link href={`/song/${song.trackId}`}> {song.trackName} </Card.Link>
+                                </Card.Title>
+                                <Card.Subtitle className="mb-2 text-muted">{song.artistName}</Card.Subtitle>                  
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+                </Container>
             </div>
+            
+        )
     })
-    console.log(albumData)
-    console.log(songDisplay)
+
+    
     return (
         <div>
-            <p>Album Data Goes Here!</p>
-            <p>ID: {id}</p>
             {songDisplay}
         </div>
     )
