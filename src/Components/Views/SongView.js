@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+async function lookupContentById(contentId) {
+    try {
+        const apiUrl = `https://itunes.apple.com/lookup?id=${contentId}`
+        const response = await fetch(apiUrl)
+        const data = await response.json()
+        return data.results
+    } catch (error) {
+        console.error('Error looking up content by ID:', error)
+        return []
+    }
+}
+
 function SongView() {
-    const { id } = useParams();
-    const [songData, setSongData] = useState({})
+    const { id } = useParams()
+    const [songData, setSongData] = useState([])
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `https://itunes.apple.com/lookup?id=${id}`
-                const response = await fetch(url)
-                const data = await response.json()
-
-                setSongData(data)
+                const songs = await lookupContentById (id)
+                setSongData(songs)
             } catch (error) {
-                console.error('Error Fetching song data', error)
+                console.error('Error fetching song data:', error)
             }
         }
         fetchData()

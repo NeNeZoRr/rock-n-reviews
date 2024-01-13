@@ -5,6 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App'
 
+const root = document.getElementById('root')
+
+const reactRoot = ReactDOM.createRoot(root)
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>

@@ -3,13 +3,27 @@ import Search from './Search'
 import Gallery from './Gallery/Gallery'
 import { Container, Row, Col } from 'react-bootstrap'
 
+async function searchContent(query) {
+    try {
+        const apiUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}`
+        const response = await fetch(apiUrl)
+        const data = await response.json()
+        return data.results
+    } catch (error) {
+        console.error('Error searching content:', error)
+        return []
+    }
+}
+
 function SearchPG() {
     const [search, setSearch] = useState('')
     const [message, setMessage] = useState('Search for music')
     const [data, setData] = useState([])
 
-    const handleSearch = (term) => {
+    const handleSearch = async (term) => {
         setSearch(term)
+        const results = await searchContent(term)
+        setData(results)
     }
 
     return (
@@ -26,4 +40,4 @@ function SearchPG() {
     )
 }
 
-export default SearchPG;
+export default SearchPG

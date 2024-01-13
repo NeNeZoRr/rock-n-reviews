@@ -1,78 +1,91 @@
 import React, { useState, useEffect } from 'react'
-import { Carousel, Card, Container, Row, Col } from 'react-bootstrap'
+import { Carousel, Card, Row, Col } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+async function fetchAlbumsAndSongs() {
+  try {
+    const albumsApiUrl = 'https://itunes.apple.com/search?term=album&entity=album&limit=5'
+    const songsApiUrl = 'https://itunes.apple.com/search?term=song&entity=song&limit=5'
+
+    const [albumsResponse, songsResponse] = await Promise.all([
+      fetch(albumsApiUrl),
+      fetch(songsApiUrl),
+    ])
+
+    const [albumsData, songsData] = await Promise.all([
+      albumsResponse.json(),
+      songsResponse.json(),
+    ]);
+
+    return { albums: albumsData.results, songs: songsData.results }
+  } catch (error) {
+    console.error('Error fetching albums and songs data:', error)
+    return { albums: [], songs: [] }
+  }
+}
 
 function Home() {
-  cosnt [albums, setAlbums] = useState([])
-  cosnt [songs, setSongs] = useState([])
+  const [albums, setAlbums] = useState([])
+  const [songs, setSongs] = useState([])
 
   useEffect(() => {
-    const fetchAlbumAndSongs = async () => {
-      try {
-        const albumResponse = await fetch('https://itunes.apple.com/search?term=album&entity=album&limit=5')
-        const albumData = await albumResponse.json()
-        setAlbums(albumsData.results)
-
-        const songResponse = await fetch('https://itunes.apple.com/search?term=song&entity=song&limit=5')
-        const songData = await songResponse.json()
-        setSongs(songsData.results)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
+    const fetchData = async () => {
+      const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchAlbumsAndSongs()
+      setAlbums(fetchedAlbums)
+      setSongs(fetchedSongs)
     }
 
-    fetchAlbumAndSongs()
+    fetchData()
   }, [])
 
-  const renderCarouselItems = (data) => {
-    return data.map((item) => (
-      <Carousel.Item key={item.trackId}>
-        <img
-          className="d-block w-100"
-          src={item.artworkUrl100}
-          alt={item.collectionName}
-        />
-        <Carousel.Caption>
-          <h3>{item.collectionName}</h3>
-          <p>{item.artistName}</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    ))
-  }
-
-  const renderCardItems = (data) => {
-    return data.map((item) => (
-      <Col key={item.trackId} xs={12} md={4}>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={item.artworkUrl100} alt={item.collectionName} />
-          <Card.Body>
-            <Card.Title>{item.collectionName}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{item.artistName}</Card.Subtitle>
-          </Card.Body>
-        </Card>
-      </Col>
-    ))
-  }
+  const renderCard = (data, type) => (
+    <Row className="justify-content-md-center mt-3">
+      {data.map((item) => (
+        <Col key={item.trackId} md={4}>
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={item.artworkUrl100} alt={item.collectionName} />
+            <Card.Body>
+              <Card.Title>{item.collectionName || item.trackName}</Card.Title>
+              <Card.Text>
+                {type === 'album' ? 'Artist: ' + item.artistName : 'Track: ' + item.trackName}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+  )
 
   return (
-    <Container>
-      <Row className="mt-5">
-        <Col>
-          <h2>Featured Albums</h2>
-          <Carousel>
-            {renderCarouselItems(albums)}
-          </Carousel>
-        </Col>
-      </Row>
-      <Row className="mt-5">
-        <Col>
-          <h2>Featured Songs</h2>
-          <Row>
-            {renderCardItems(songs)}
-          </Row>
-        </Col>
-      </Row>
-    </Container>
-    )
+    <div>
+
+      <Carousel>
+        {albums.map((album) => (
+          <Carousel.Item key={album.trackId}>
+            <img className="d-block w-100" src={album.artworkUrl100} alt={album.collectionName} />
+            <Carousel.Caption>
+              <h3>{album.collectionName}</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+
+      {renderCard(albums, 'album')}
+
+      <Carousel>
+        {songs.map((song) => (
+          <Carousel.Item key={song.trackId}>
+            <img className="d-block w-100" src={song.artworkUrl100} alt={song.trackName} />
+            <Carousel.Caption>
+              <h3>{song.trackName}</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+
+      {renderCard(songs, 'song')}
+    </div>
+  )
 }
 
 export default Home

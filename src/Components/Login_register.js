@@ -1,24 +1,24 @@
-import React from "react"
-import Login from "./Login"
-import Register from "./Register"
-import { type } from "os"
+// import React from "react"
+// import Login from "./Login"
+// import Register from "./Register"
 
-const Logreg = () => {
-    const [fromType, setFormType] = React.useState('login')
 
-    const handleFormSwitch = (type) => {
-        setFormType(type)
-    }
+// const Logreg = () => {
+//     const [fromType, setFormType] = React.useState('login')
 
-    return (
-        <div>
-            {formType === 'login' ? (
-            <Login onFormSwitch={handleFormSwitch} />
-            ) : (
-                <Register onFormSwitch={handleFormSwitch} />
-            )}
-        </div>
-    )
-}
+//     const handleFormSwitch = (type) => {
+//         setFormType(type)
+//     }
 
-export default Logreg
+//     return (
+//         // <div>
+//         //     {formType === 'login' ? (
+//         //     <Login onFormSwitch={handleFormSwitch} />
+//         //     ) : (
+//         //         <Register onFormSwitch={handleFormSwitch} />
+//         //     )}
+//         // </div>
+//     )
+// }
+
+// export default Logreg

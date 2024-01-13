@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navigation from './Components/Navigation'
 import Home from './Components/Home'
@@ -8,7 +8,7 @@ import SongView from './Components/Views/SongView'
 import Forum from './Components/Forum'
 import Logreg from './Components/Login_register'
 import SearchPG from './Components/SearchPG'
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return (
@@ -30,4 +30,3 @@ function App() {
 }
 
 export default App
-
