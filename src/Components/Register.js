@@ -1,50 +1,60 @@
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom"
-
-function Register(props) {
-
-    const init_state = {
-        userName: '',
-        pass: ''
-    }
-
-    const navigate = useNavigate()
-    const [data, setData] = useState(init_state);
-    const [errorMessage, setErrorMessage] = useState();
-
-    // const [userName, setUserName] = useState('');
-    // const [pass, setPass] = useState('');
-
-    const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
+export const Register = (props) => {
+    const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
+    const [pass, setPass] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log(data)
+        e.preventDefault();
 
-        const url = `${process.env.REACT_APP_BACKEND_URL}/users/register`
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }, console.log(url))
-        if (response.status !== 201) {
-            setErrorMessage('Error creating user')
+        try {
+            // Add client-side validation
+            if (pass !== confirmPass) {
+                console.error('Passwords do not match');
+                return;
+            }
 
-        } else {
-            if (errorMessage) setErrorMessage('')
-            navigate('/', { replace: true })
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}users/register`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    userName: userName,
+                    pass: pass,
+                }),
+            });
+
+            if (response.ok) {
+                console.log('User registered successfully');
+                navigate('/');
+            } else {
+                console.error('Error registering user');
+            }
+        } catch (error) {
+            console.error('Error registering user', error);
         }
-    }
+    };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Your Name:</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    required
+                    placeholder="Your Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
 
                 <label htmlFor="userName">User Name:</label>
                 <input
@@ -53,8 +63,8 @@ function Register(props) {
                     id="userName"
                     required
                     placeholder="User Name"
-                    value={data.userName}
-                    onChange={handleChange}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                 />
 
                 <label htmlFor="pass">Password:</label>
@@ -64,8 +74,19 @@ function Register(props) {
                     id="pass"
                     required
                     placeholder="********"
-                    value={data.pass}
-                    onChange={handleChange}
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                />
+
+                <label htmlFor="confirmPass">Confirm Password:</label>
+                <input
+                    type="password"
+                    name="confirmPass"
+                    id="confirmPass"
+                    required
+                    placeholder="********"
+                    value={confirmPass}
+                    onChange={(e) => setConfirmPass(e.target.value)}
                 />
 
                 <button type="submit">Register</button>
@@ -77,4 +98,5 @@ function Register(props) {
         </>
     );
 }
+
 export default Register;
