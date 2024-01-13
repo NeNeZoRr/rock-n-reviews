@@ -2,8 +2,12 @@ import React from 'react'
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
 function Navigation() {
-  return (
-    <Navbar className="bg-body-tertiary">
+    React.useEffect(() => {
+        document.title = "Rock-n-Reviews";
+    }, [])
+
+    return (
+        <Navbar className="bg-body-tertiary">
       <Container>
         <h1>
           <div style={{ display: 'flex', alignItems: 'center', marginLeft: '-18rem' }}>
@@ -29,6 +33,7 @@ function Navigation() {
               <Nav.Link href="/forum">Forum</Nav.Link>
               <Nav.Link href="/reviews">Reviews</Nav.Link>
               <Nav.Link href="/logreg">Login/Register</Nav.Link>
+              <Nav.Link href="/admin">Admin</Nav.Link>
             </Nav>
           </h4>
         </div>
@@ -38,4 +43,3 @@ function Navigation() {
 }
 
 export default Navigation
-
