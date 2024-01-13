@@ -51,3 +51,5 @@ function AlbumView() {
 }
 
 export default AlbumView
+
+// toggle display of review form to true false if clicked, take data from album/song view onto form and push into Db on submit
