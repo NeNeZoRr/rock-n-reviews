@@ -8,7 +8,7 @@ import SongView from './Components/Covers/SongCover'
 import Forum from './Components/Forum/Forum'
 import Logreg from './Components/Regs/Login_register'
 import SearchPG from './Components/Search/SearchPG'
-import AdminPage from './Components/Admin/AdminPage'
+import AdminPage from './Components/AdminPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
