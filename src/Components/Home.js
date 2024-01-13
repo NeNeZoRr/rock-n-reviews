@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Carousel, Card, Row, Col, Form } from 'react-bootstrap';
+import { Carousel, Card, Row, Col, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 async function fetchAlbumsAndSongs() {
@@ -33,18 +33,15 @@ async function search(query, entity, limit) {
 
     return searchData.results
   } catch (error) {
-    console.error('Error with searching ${entity}s:', error)
+    console.error(`Error with searching ${entity}s:`, error)
     return []
   }
 }
-
-
 
 function Home() {
   const [albums, setAlbums] = useState([])
   const [songs, setSongs] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,8 +56,8 @@ function Home() {
   const renderCard = (data, type) => (
     <Row className="justify-content-md-center mt-3">
       {data.map((item) => (
-        <Col key={item.trackId} md={4}>
-          <Card style={{ width: '18rem' }}>
+        <Col key={item.trackId} md={3}>
+          <Card style={{ width: '15rem' }}>
             <Card.Img
               variant="top"
               src={item.artworkUrl100}
@@ -69,7 +66,9 @@ function Home() {
             />
             <Card.Body>
               <Card.Title>{item.collectionName || item.trackName}</Card.Title>
-              <Card.Text>{type === 'album' ? 'Artist: ' + item.artistName : 'Track: ' + item.trackName}</Card.Text>
+              <Card.Text>
+                {type === 'album' ? 'Artist: ' + item.artistName : 'Track: ' + item.trackName}
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -77,52 +76,63 @@ function Home() {
     </Row>
   )
 
-  const handleSearch = async () => {
-    const searchedAlbums = await search(searchQuery, 'album', 4)
-    const searchedSongs = await search(searchQuery, 'song', 4)
-
-    setAlbums(searchedAlbums)
-    setSongs(searchedSongs)
-
-  }
-
   return (
     <div>
-      <Carousel>
-        {albums.map((album, index) => (
-          <Carousel.Item key={album.trackId} className={index === 0 ? 'active' : ''}>
-            <img
-              className="d-block w-100"
-              src={album.artworkUrl100}
-              alt={album.collectionName}
-              style={{ height: '300px', objectFit: 'cover' }}
-            />
-            <Carousel.Caption>
-              <h3>{album.collectionName}</h3>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      <Navbar bg="light" expand="lg" className="justify-content-center">
+        <Navbar.Brand href="/">Rock-n-Reviews</Navbar.Brand>
+        <Form inline>
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <Button variant="outline-primary" onClick={handleSearch}>
+            Search
+          </Button>
+        </Form>
+      </Navbar>
 
-      {renderCard(albums, 'album')}
+      <section className="carousel-section">
+        <Carousel>
+          {albums.map((album, index) => (
+            <Carousel.Item key={album.trackId} className={index === 0 ? 'active' : ''}>
+              <img
+                className="d-block w-100"
+                src={album.artworkUrl100}
+                alt={album.collectionName}
+                style={{ height: '300px', objectFit: 'cover' }}
+              />
+              <Carousel.Caption>
+                <h3>{album.collectionName}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
 
-      <Carousel>
-        {songs.map((song, index) => (
-          <Carousel.Item key={song.trackId} className={index === 0 ? 'active' : ''}>
-            <img
-              className="d-block w-100"
-              src={song.artworkUrl100}
-              alt={song.trackName}
-              style={{ height: '200px', objectFit: 'cover' }}
-            />
-            <Carousel.Caption>
-              <h3>{song.trackName}</h3>
-            </Carousel.Caption>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      <section className="album-cards-section">{renderCard(albums, 'album')}</section>
 
-      {renderCard(songs, 'song')}
+      <section className="carousel-section">
+        <Carousel>
+          {songs.map((song, index) => (
+            <Carousel.Item key={song.trackId} className={index === 0 ? 'active' : ''}>
+              <img
+                className="d-block w-100"
+                src={song.artworkUrl100}
+                alt={song.trackName}
+                style={{ height: '200px', objectFit: 'cover' }}
+              />
+              <Carousel.Caption>
+                <h3>{song.trackName}</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
+
+      <section className="song-cards-section">{renderCard(songs, 'song')}</section>
     </div>
   )
 }
