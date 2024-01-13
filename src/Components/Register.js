@@ -1,14 +1,23 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const Register = (props) => {
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
   const [pass, setPass] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      // Add client-side validation
+      if (pass !== confirmPass) {
+        console.error('Passwords do not match');
+        return;
+      }
+
       const response = await fetch('http://localhost:8080/users/register', {
         method: 'POST',
         headers: {
@@ -23,13 +32,14 @@ export const Register = (props) => {
 
       if (response.ok) {
         console.log('User registered successfully');
+        navigate('/'); 
       } else {
         console.error('Error registering user');
       }
     } catch (error) {
       console.error('Error registering user', error);
     }
-  }
+  };
 
   return (
     <>
@@ -67,6 +77,17 @@ export const Register = (props) => {
           onChange={(e) => setPass(e.target.value)}
         />
 
+        <label htmlFor="confirmPass">Confirm Password:</label>
+        <input
+          type="password"
+          name="confirmPass"
+          id="confirmPass"
+          required
+          placeholder="********"
+          value={confirmPass}
+          onChange={(e) => setConfirmPass(e.target.value)}
+        />
+
         <button type="submit">Register</button>
       </form>
 
@@ -78,3 +99,4 @@ export const Register = (props) => {
 }
 
 export default Register;
+
