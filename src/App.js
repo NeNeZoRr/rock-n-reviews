@@ -11,7 +11,6 @@ import Logreg from './Components/Login_register';
 import AlbumView from "./Components/Views/AlbumView";
 import SongView from './Components/Views/SongView';
 
-  
 function App() {
 
   
