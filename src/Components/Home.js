@@ -1,28 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Carousel, Card, Row, Col } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-async function fetchAlbumsAndSongs() {
-  try {
-    const albumsApiUrl = 'https://itunes.apple.com/search?term=album&entity=album&limit=4'
-    const songsApiUrl = 'https://itunes.apple.com/search?term=song&entity=song&limit=4'
-
-    const [albumsResponse, songsResponse] = await Promise.all([
-      fetch(albumsApiUrl),
-      fetch(songsApiUrl),
-    ]);
-
-    const [albumsData, songsData] = await Promise.all([
-      albumsResponse.json(),
-      songsResponse.json(),
-    ]);
-
-    return { albums: albumsData.results, songs: songsData.results }
-  } catch (error) {
-    console.error('Error fetching albums and songs data:', error)
-    return { albums: [], songs: [] }
-  }
-}
+import React, { useState, useEffect } from 'react';
+import { Carousel, Card, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { fetchRandomAlbumsAndSongs } from './API/Api';
 
 function Home() {
   const [albums, setAlbums] = useState([])
@@ -30,9 +9,15 @@ function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchAlbumsAndSongs()
-      setAlbums(fetchedAlbums)
-      setSongs(fetchedSongs)
+      try {
+        const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchRandomAlbumsAndSongs()
+        // console.log('Fetched Albums:', fetchedAlbums)
+        // console.log('Fetched Songs:', fetchedSongs)
+        setAlbums(fetchedAlbums)
+        setSongs(fetchedSongs)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
     }
 
     fetchData()
