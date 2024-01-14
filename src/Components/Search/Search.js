@@ -18,7 +18,7 @@ function Search({ message }) {
         <div>
             <input
                 type="text"
-                placeholder="Search for music"
+                placeholder="Discover your next beat"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />

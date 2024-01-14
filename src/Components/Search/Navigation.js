@@ -11,7 +11,7 @@ function Navigation() {
     document.title = 'Rock-n-Reviews'
   }, [])
 
-  const handleSearch = (e) => {
+  const setse = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== '') {
       navigate(`/search/${searchTerm}`)
@@ -28,10 +28,10 @@ function Navigation() {
             </Navbar.Brand>
           </div>
         </h1>
-        <div style={{ display: 'flex', alignItems: 'center', marginRight: '-18rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginRight: '-17rem' }}>
           <h4>
-          <Search />
             <Nav className="ms-auto" navbarScroll>
+            <Search />
               <div style={{ width: '30px' }}></div>
               <Nav.Link as={Link} to="/forum">
                 Forum

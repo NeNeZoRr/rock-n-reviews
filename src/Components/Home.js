@@ -54,15 +54,6 @@ function Home() {
     </Row>
   )
   
-  const handleSearch = async (searchTerm) => {
-    try {
-      const results = await searchITunes(searchTerm, 'musicTrack')
-      setSearchResults(results)
-    } catch (error) {
-      console.error('Error in search:', error)
-    }
-  }
-
   return (
     <div>
       <section className="carousel-section">
@@ -105,16 +96,9 @@ function Home() {
 
       <section className="song-cards-section">{renderCard(songs, 'song')}</section>
 
-      <Search onSearch={handleSearch} />
-
-      {searchResults.length > 0 && (
-        <section className="search-results-section">
-          <h2>Search Results</h2>
-          {renderCard(searchResults, 'song')}
-        </section>
-      )}
     </div>
   )
 }
 
 export default Home
+
