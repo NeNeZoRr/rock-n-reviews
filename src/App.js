@@ -17,12 +17,13 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search/:id" element={<Search />} />
           <Route path="/album/:id" element={<AlbumCover />} />
           <Route path="/song/:id" element={<SongCover />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/forum" element={<Forum />} />
         </Routes>
+
       </div>
     </Router>
   )
