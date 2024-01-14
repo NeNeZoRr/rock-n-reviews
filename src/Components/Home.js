@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Carousel, Card, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { fetchRandomAlbumsAndSongs } from './API/Api';
+import React, { useState, useEffect } from 'react'
+import { Carousel, Card, Row, Col } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { fetchRandomAlbumsAndSongs } from './API/Api'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const [albums, setAlbums] = useState([])
@@ -11,8 +12,6 @@ function Home() {
     const fetchData = async () => {
       try {
         const { albums: fetchedAlbums, songs: fetchedSongs } = await fetchRandomAlbumsAndSongs()
-        // console.log('Fetched Albums:', fetchedAlbums)
-        // console.log('Fetched Songs:', fetchedSongs)
         setAlbums(fetchedAlbums)
         setSongs(fetchedSongs)
       } catch (error) {
