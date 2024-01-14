@@ -1,4 +1,4 @@
-.link {
-    position: relative;
-    left:5dvw;
+.cards{
+    display: flex;
+    justify-content: center;
 }

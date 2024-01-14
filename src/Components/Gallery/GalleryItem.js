@@ -1,25 +1,20 @@
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 const GalleryItem = ({ item }) =>{
-    // console.log(items)
+    // console.log(item)
     return (
         <>
-
-        <Row xs={1} md={4} style={{ margin:'1vw', justifyContent: 'center'}}>
-                <Col>
-                    <Card style={{ width: '15vw' }}>
-                        <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">{item.artistName}</Card.Subtitle>
-                            <img src={item.artworkUrl60} alt="album cover"/>
-                            <Card.Link href={`/album/${item.collectionId}`}> Album: {item.collectionName} </Card.Link>
-                            <Card.Link href={`/song/${item.trackId}`}> {item.trackName} </Card.Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
-        </Row>
+            <Card style={{ width: '25vw', }} >
+                <Card.Img classname="cardImg" variant="top" src={item.artworkUrl100} alt="album cover" />
+                <Card.Body>
+                    <Card.Title>{item.artistName}</Card.Title>
+                    Album:<Card.Link href={`/album/${item.collectionId}`}> {item.collectionName} </Card.Link>
+                    <Card.Text>Released on:  {item.releaseDate}</Card.Text>
+                    <Card.Text>Songs: {item.trackCount}</Card.Text>
+                    {/* <Button variant="primary"></Button> */}
+                </Card.Body>
+            </Card>
         </>
     )
 

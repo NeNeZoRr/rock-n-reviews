@@ -25,7 +25,7 @@ function AlbumView() {
         return (
             < div key={song.trackId}>
                 <Container>
-                <Row xs={1} md={4} className="g-4" style={{ margin:'1vw', justifyContent: 'center'}}>
+                <Row xs={1} md={4}  style={{ margin:'1vw', justifyContent: 'center'}}>
                     <Col>
                         <Card style={{ width: '15vw' }}>
                             <Card.Body>
