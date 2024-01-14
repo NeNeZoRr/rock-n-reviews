@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Search from './Search'
 
-const SearchAlbumSongs = () => {
+function SearchSongView() {
     const { id } = useParams()
 
     const handleSearch = async (term) => {
@@ -12,4 +12,4 @@ const SearchAlbumSongs = () => {
     return <Search handleSearch={handleSearch} message="Search for songs" data={[]} />
 }
 
-export default SearchAlbumSongs
+export default SearchSongView
