@@ -1,3 +1,14 @@
+import React from 'react'
+import './App.css'
+import Home from './Components/Home'
+import Navigation from './Components/Search/Navigation'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Reviews from './Components/Review/Reviews'
+import AlbumCover from './Components/Covers/AlbumCover'
+import SongCover from './Components/Covers/SongCover'
+import Forum from './Components/Forum/CoverForum'
+import Search from './Components/Search/Search'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Components/Navigation';
@@ -82,4 +93,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
