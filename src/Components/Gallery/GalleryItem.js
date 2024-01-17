@@ -12,7 +12,6 @@ const GalleryItem = ({ item }) =>{
                     Album:<Card.Link href={`/album/${item.collectionId}`}> {item.collectionName} </Card.Link>
                     <Card.Text>Released on:  {item.releaseDate}</Card.Text>
                     <Card.Text>Songs: {item.trackCount}</Card.Text>
-                    {/* <Button variant="primary"></Button> */}
                 </Card.Body>
             </Card>
         </>

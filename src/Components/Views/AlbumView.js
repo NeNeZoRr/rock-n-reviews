@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button'
+
+import ReviewForm from './ReviewFormA';
 
 function AlbumView() {
     const [ albumData, setAlbumData ] = useState({ results: []})
@@ -18,10 +22,10 @@ function AlbumView() {
             setAlbumData(data)
         }
         fetchData()
-        console.log(albumData)
+        // console.log(albumData)
     }, [id])
 
-    const songDisplay = albumData.results.map(song => {
+    const albumDisplay = albumData.results.map(song => {
         return (
             < div key={song.trackId}>
                 <Container>
@@ -44,10 +48,15 @@ function AlbumView() {
         )
     })
 
-    
+    const [showForm, setShowForm] = useState(false);
+
     return (
         <div>
-            {songDisplay}
+            <Button variant="secondary" size="sm" onClick={() => setShowForm(!showForm)}>
+            Review this album
+            </Button>
+            {showForm && <ReviewForm albumData={albumData}  /> }
+            {albumDisplay}
         </div>
     )
 }

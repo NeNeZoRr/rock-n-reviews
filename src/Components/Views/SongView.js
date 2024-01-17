@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import ReviewForm from './ReviewFormS'
 
 
 function SongView() {
@@ -25,7 +26,7 @@ const songDisplay = songData.results.map(song => {
     return (
         < div key={song.trackId}>
             <Card style={{ width: '25vw', }} >
-                <Card.Img classname="cardImg" variant="top" src={song.artworkUrl100} alt="album cover" />
+                <Card.Img className="cardImg" variant="top" src={song.artworkUrl100} alt="album cover" />
                 <Card.Body>
                     <Card.Title>{song.artistName}</Card.Title>
                     <Card.Text>Song Title:  {song.trackName}</Card.Text>
@@ -39,9 +40,15 @@ const songDisplay = songData.results.map(song => {
     )
 })
 
+const [showForm, setShowForm] = useState(false);
+
     return (
         <div>
-        {songDisplay}
+            <Button variant="secondary" size="sm" onClick={() => setShowForm(!showForm)}>
+                Review this song
+            </Button>
+            {showForm && <ReviewForm songData={songData}  /> }
+            {songDisplay}
         </div>
     )
 }
