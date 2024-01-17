@@ -1,14 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React from "react"
 
 export const Register = (props) => {
-    // const [user, setUser] = useState('');
-    // const [name, setName] = useState('');
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log(user);
-    // }
 
     return (
         <>
@@ -23,4 +15,5 @@ export const Register = (props) => {
         </>
     )
 }
-export default Register;
+
+export default Register

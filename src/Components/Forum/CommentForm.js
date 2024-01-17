@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { useState } from 'react'
+import Form from 'react-bootstrap/Form'
 
 const CommentForm = ({ onCommentSubmit }) => {
-    const [author, setAuthor] = useState('');
-    const [text, setText] = useState('');
+    const [author, setAuthor] = useState('')
+    const [text, setText] = useState('')
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        onCommentSubmit({ author, text });
-        setAuthor('');
-        setText('');
-    };
+        e.preventDefault()
+        onCommentSubmit({ author, text })
+        setAuthor('')
+        setText('')
+    }
 
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formAuthor">
-                <Form.Label>User:</Form.Label>
+                <Form.Label>Comment Review</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="Enter your comment here"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
@@ -28,7 +28,7 @@ const CommentForm = ({ onCommentSubmit }) => {
                 <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Leave your review or opinion here"
+                    placeholder="Leave your Comments here"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />
@@ -37,7 +37,7 @@ const CommentForm = ({ onCommentSubmit }) => {
                 Submit Comment
             </button>
         </Form>
-    );
-};
+    )
+}
 
-export default CommentForm;
+export default CommentForm

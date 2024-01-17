@@ -1,34 +1,32 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
 import './App.css'
+import Home from './Components/Home'
+import Navigation from './Components/Search/Navigation'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-
-// to be barrel loaded vvv
-import Navigation from "./Components/Navigation";
-import Home from './Components/Home';
-import Reviews from './Components/Reviews';
-import Forum from './Components/Forum';
-import Logreg from './Components/Login_register';
-import AlbumView from "./Components/Views/AlbumView";
-import SongView from './Components/Views/SongView';
+import Reviews from './Components/Review/Reviews'
+import AlbumCover from './Components/Covers/AlbumCover'
+import SongCover from './Components/Covers/SongCover'
+import Forum from './Components/Forum/CoverForum'
+import Search from './Components/Search/Search'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
-
-  
-    return (
+  return (
+    <Router>
       <div className="App">
         <Navigation />
-      <Router>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path='/album/:id' element={<AlbumView />} />
-            <Route path='/song/:id' element={<SongView />} />
-            <Route path="/Forum" element={<Forum />} />
-            <Route path="/Reviews" element={<Reviews />} />
-            <Route path="/Logreg" element={<Logreg />} />
-        </Routes> 
-      </Router>         
-      </div>
-    );
-  }
+          <Route path="/" element={<Home />} />
+          <Route path="/search/:id" element={<Search />} />
+          <Route path="/album/:id" element={<AlbumCover />} />
+          <Route path="/song/:id" element={<SongCover />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/forum" element={<Forum />} />
+        </Routes>
 
-export default App;
+      </div>
+    </Router>
+  )
+}
+
+export default App
