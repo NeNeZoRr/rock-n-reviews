@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Search from "./Search";
 import Gallery from './Gallery/Gallery'
+import '../App.css'
 
 function Home() {
   const [search, setSearch] = useState("");

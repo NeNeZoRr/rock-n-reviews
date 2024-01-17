@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col';
@@ -31,7 +32,7 @@ function AlbumView() {
                 <Container>
                 <Row xs={1} md={4}  style={{ margin:'1vw', justifyContent: 'center'}}>
                     <Col>
-                        <Card style={{ width: '15vw' }}>
+                        <Card className="Card "style={{ width: '15vw' }}>
                             <Card.Body>
                                 <Card.Title>
                                     <img src={song.artworkUrl60} alt="album cover"/>

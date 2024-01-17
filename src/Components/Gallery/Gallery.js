@@ -1,4 +1,5 @@
 import GalleryItem from './GalleryItem'
+import './Gallery.css'
 
 function Gallery ({ data }) {
     const display = data.map(item => {

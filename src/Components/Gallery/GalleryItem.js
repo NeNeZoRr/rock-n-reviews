@@ -1,11 +1,12 @@
-// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import './Gallery.css'
 
 const GalleryItem = ({ item }) =>{
     // console.log(item)
     return (
         <>
-            <Card style={{ width: '25vw', }} >
+        <div className="body">
+            <Card className="Cards" style={{ width: '25vw', }} >
                 <Card.Img classname="cardImg" variant="top" src={item.artworkUrl100} alt="album cover" />
                 <Card.Body>
                     <Card.Title>{item.artistName}</Card.Title>
@@ -14,6 +15,7 @@ const GalleryItem = ({ item }) =>{
                     <Card.Text>Songs: {item.trackCount}</Card.Text>
                 </Card.Body>
             </Card>
+        </div>
         </>
     )
 
