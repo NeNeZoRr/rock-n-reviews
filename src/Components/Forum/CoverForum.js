@@ -22,9 +22,9 @@ const CoverForum = () => {
     }
 
     const handleReplySubmit = (topicIndex, replyContent) => {
-        const updatedTopics = [...topics];
+        const updatedTopics = [...topics]
         updatedTopics[topicIndex].replies.push(replyContent)
-        setTopics(updatedTopics);
+        setTopics(updatedTopics)
     }
 
     const clearPostResult = () => {
@@ -33,19 +33,20 @@ const CoverForum = () => {
 
     return (
         <div>
-            <h1>Cover Forum</h1>
+            <h1 style={{ textAlign: 'center' }}>Forum</h1>
             {postResult.message && (
                 <div style={{ color: postResult.success ? 'green' : 'red', margin: '10px 0' }}>{postResult.message}</div>
             )}
             <div>
-                <h2>Topics</h2>
+                <h2>Topics </h2>
+                <div style={{ marginBottom: '30px' }}></div>
                 <Accordion>
                     {topics.map((topic, index) => (
                         <Accordion.Item key={index} eventKey={`accordion-${index}`}>
                             <Accordion.Header>{topic.title}</Accordion.Header>
                             <Accordion.Body>
                                 <Card.Text>{topic.body}</Card.Text>
-                                <div>
+                                <div style={{ border: '3px solid black' }}>
                                     <h4>Replies:</h4>
                                     {topic.replies.map((reply, replyIndex) => (
                                         <div key={replyIndex}>
@@ -62,27 +63,33 @@ const CoverForum = () => {
             <div>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                        <Form.Label>Title:</Form.Label>
+                        <Form.Label>
+                            <h3>Title:</h3>
+                        </Form.Label>
                         <Form.Control
                             type="text"
                             value={newTopic.title}
                             onChange={(e) => setNewTopic({ ...newTopic, title: e.target.value })}
                             placeholder="Add a new topic title"
+                            style={{ border: '2px solid black' }}
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Body:</Form.Label>
+                        <Form.Label><h3>Body:</h3> </Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
                             value={newTopic.body}
                             onChange={(e) => setNewTopic({ ...newTopic, body: e.target.value })}
                             placeholder="Add topic details"
+                            style={{ border: '2px solid black' }}
                         />
                     </Form.Group>
                 </Form>
             </div>
-            <button onClick={handleTopicSubmit}>Post Topic</button>
+            <Button variant="primary" onClick={handleTopicSubmit}>
+                {postResult.success ? 'Topic posted successfully!' : 'Post Topic'}
+            </Button>
         </div>
     )
 }
