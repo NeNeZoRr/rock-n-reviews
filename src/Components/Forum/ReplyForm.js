@@ -27,7 +27,7 @@ function ReplyForm({ threadId }) {
         <div className="ReplyForm">
             <form onSubmit={handleSubmit}>
                 <label>
-                    Your Reply:
+                    <h3>Your Reply:</h3>
                     <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}

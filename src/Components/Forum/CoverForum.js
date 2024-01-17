@@ -46,7 +46,7 @@ const CoverForum = () => {
                             <Accordion.Header>{topic.title}</Accordion.Header>
                             <Accordion.Body>
                                 <Card.Text>{topic.body}</Card.Text>
-                                <div style={{ border: '3px solid black' }}>
+                                <div>
                                     <h4>Replies:</h4>
                                     {topic.replies.map((reply, replyIndex) => (
                                         <div key={replyIndex}>
