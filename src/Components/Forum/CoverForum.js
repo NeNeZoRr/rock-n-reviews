@@ -77,13 +77,12 @@ const CoverForum = () => {
                             rows={3}
                             value={newTopic.body}
                             onChange={(e) => setNewTopic({ ...newTopic, body: e.target.value })}
-                            placeholder="Add a new topic body"
+                            placeholder="Add topic details"
                         />
                     </Form.Group>
                 </Form>
             </div>
             <button onClick={handleTopicSubmit}>Post Topic</button>
-            <button onClick={clearPostResult}>Clear Result</button>
         </div>
     )
 }

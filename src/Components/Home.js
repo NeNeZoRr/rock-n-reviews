@@ -35,7 +35,7 @@ function Home() {
     <Row className="justify-content-md-center mt-3">
       {data.map((item) => (
         <Col key={item.trackId} md={3}>
-          <Card style={{ width: '18rem', marginLeft: '90px' }}>
+          <Card style={{ width: '18rem', marginLeft: '90px', border: '4px solid black' }}>
             <Card.Img
               variant="top"
               src={item.artworkUrl100}
@@ -53,9 +53,9 @@ function Home() {
       ))}
     </Row>
   )
-  
+
   return (
-    <div>
+    <div style={{ border: '4px solid black', padding: '10px' }}>
       <section className="carousel-section">
         <Carousel>
           {albums.map((album, index) => (
@@ -64,7 +64,7 @@ function Home() {
                 className="d-block w-100"
                 src={album.artworkUrl100}
                 alt={album.collectionName}
-                style={{ height: '300px', objectFit: 'cover' }}
+                style={{ height: '300px', objectFit: 'cover', border: '4px solid black' }}
               />
               <Carousel.Caption>
                 <h3>{album.collectionName}</h3>
@@ -76,7 +76,7 @@ function Home() {
 
       <section className="album-cards-section">{renderCard(albums, 'album')}</section>
 
-      <section className="carousel-section">
+      <section className="carousel-section" style={{ marginTop: '20px' }}>
         <Carousel>
           {songs.map((song, index) => (
             <Carousel.Item key={song.trackId} className={index === 0 ? 'active' : ''}>
@@ -84,7 +84,7 @@ function Home() {
                 className="d-block w-100"
                 src={song.artworkUrl100}
                 alt={song.trackName}
-                style={{ height: '300px', objectFit: 'cover' }}
+                style={{ height: '300px', objectFit: 'cover', border: '4px solid black' }}
               />
               <Carousel.Caption>
                 <h3>{song.trackName}</h3>
@@ -95,10 +95,9 @@ function Home() {
       </section>
 
       <section className="song-cards-section">{renderCard(songs, 'song')}</section>
-
     </div>
-  )
+  );
 }
 
-export default Home
 
+export default Home
