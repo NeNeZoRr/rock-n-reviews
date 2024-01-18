@@ -21,17 +21,19 @@ const Login = (props) => {
                     password: pass,
                 }),
             });
-    
+        
+            
+        
             if (!response.ok) {
                 console.error('Authentication failed:', response.status, response.statusText);
                 // Handle authentication failure (display error message, etc.)
             } else {
-                console.log('Login successful');
+                console.log('Login successful at', new Date().toISOString());
                 // Redirect to the home page upon successful login
                 navigate('/');
             }
         } catch (error) {
-            console.error('Error logging in', error);
+            console.error('Error logging in at', new Date().toISOString(), error);
         }
     };
 

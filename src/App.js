@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import Reviews from './Components/Reviews';
@@ -8,31 +8,34 @@ import Forum from './Components/Forum';
 import Logreg from './Components/Login_register';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { userContext } from './Components/User_Context';
-
+import { UserProvider } from './Components/User_Context';
 
 function App() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("search for music");
   const [data, setData] = useState([]);
   const [user, setUser] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch('http://localhost:3000/user/1'); // Adjust the endpoint accordingly
+        const response = await fetch(`http://localhost:8080/users/${id}`);
+        if (!response.ok) {
+          console.error('Error fetching user data:', response.status, response.statusText);
+          return;
+        }
+  
         const userData = await response.json();
         setUser(userData);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
-
-
+  
     fetchUser();
   }, []);
-
-
+  
 
   useEffect(() => {
     if (search) {
@@ -63,17 +66,17 @@ function App() {
 
   return (
     <div className="App">
-      <userContext.Provider value={this.state.user}>
-      <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Forum" element={<Forum />} />
-          <Route path="/Reviews" element={<Reviews />} />
-          <Route path="/Logreg" element={<Logreg />} />
-        </Routes>
-      </Router>
-      </userContext.Provider>
+      <UserProvider>
+        <Router>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Forum" element={<Forum />} />
+            <Route path="/Reviews" element={<Reviews />} />
+            <Route path="/Logreg" element={<Logreg />} />
+          </Routes>
+        </Router>
+      </UserProvider>
     </div>
   );
 }
