@@ -6,12 +6,12 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState('');
-    const { id } = useParams();
+    const { _id } = useParams();
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/users/${id}`);
+                const response = await fetch(`http://localhost:8080/users/${_id}`);
                 if (!response.ok) {
                     console.error('Error fetching user data:', response.status, response.statusText);
                     return;
@@ -27,7 +27,7 @@ const UserProvider = ({ children }) => {
         };
 
         fetchUser();
-    }, [id]);
+    }, [_id]);
 
     const login = async (userData) => {
         try {

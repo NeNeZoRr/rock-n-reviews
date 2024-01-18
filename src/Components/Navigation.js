@@ -6,10 +6,8 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useUser } from './User_Context';
 
 function Navigation() {
-    const { user, userName, logout } = useUser();
+    const {  userName, logout } = useUser();
 
-
-    console.log('User in nav:', userName);
 
     return (
         <Navbar className="bg-body-tertiary justify-content-start">
@@ -23,7 +21,7 @@ function Navigation() {
                         {userName ? (
                             // User is logged in, render username and logout button
                             <>
-                                {/* Log the entire user object */}
+                                
                                 <span className="navbar-text mr-2">Welcome, {userName}</span>
                                 <Nav.Link onClick={logout}>Logout</Nav.Link>
                             </>
