@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import Home from './Components/Home';
 import Reviews from './Components/Reviews';
@@ -14,28 +14,6 @@ function App() {
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("search for music");
   const [data, setData] = useState([]);
-  const [user, setUser] = useState(null);
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/users/${id}`);
-        if (!response.ok) {
-          console.error('Error fetching user data:', response.status, response.statusText);
-          return;
-        }
-  
-        const userData = await response.json();
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-  
-    fetchUser();
-  }, []);
-  
 
   useEffect(() => {
     if (search) {
@@ -65,7 +43,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>
       <UserProvider>
         <Router>
           <Navigation />
@@ -82,3 +60,4 @@ function App() {
 }
 
 export default App;
+
