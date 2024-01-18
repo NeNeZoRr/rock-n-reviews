@@ -1,32 +1,34 @@
-import React from 'react'
-import './App.css'
-import Home from './Components/Home'
-import Navigation from './Components/Search/Navigation'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Reviews from './Components/Review/Reviews'
-import AlbumCover from './Components/Covers/AlbumCover'
-import SongCover from './Components/Covers/SongCover'
-import Forum from './Components/Forum/CoverForum'
-import Search from './Components/Search/Search'
-import 'bootstrap/dist/css/bootstrap.min.css'
+// App.js
+// Main component for routing and rendering different sections of the application
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Components/Home';
+import AlbumView from './Components/Display/AlbumView';
+import ArtistView from './Components/Display/SongView';
+import SearchResultsPage from './Components/Covers/SearchResultsPage';
+import CoverForum from './Components/Forum/CoverForum';
+import Navigation from './Components/Navigation';
+import Reviews from './Components/Review/Reviews';
+
+// Main App component
 function App() {
+  // Render the App component with navigation and routing for different sections
   return (
     <Router>
       <div className="App">
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/search/:id" element={<Search />} />
-          <Route path="/album/:id" element={<AlbumCover />} />
-          <Route path="/song/:id" element={<SongCover />} />
+          <Route path="/search-results" element={<SearchResultsPage />} />
+          <Route path="/artist/:id" element={<ArtistView />} />
+          <Route path="/album/:id" element={<AlbumView />} />
           <Route path="/reviews" element={<Reviews />} />
-          <Route path="/forum" element={<Forum />} />
+          <Route path="/forum" element={<CoverForum />} />
         </Routes>
-
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

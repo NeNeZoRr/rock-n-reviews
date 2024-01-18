@@ -1,35 +1,34 @@
-import React, { useState } from 'react'
-import CommentForm from './CommentForm'
-import ReplyForm from './ReplyForm'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+// Components/Forum/CoverForum.js
+// Forum component displaying topics and replies
+import React, { useState } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import ReplyForm from './ReplyForm';
 
-const CoverForum = () => {
-    const [topics, setTopics] = useState([])
-    const [newTopic, setNewTopic] = useState({ title: '', body: '' })
-    const [postResult, setPostResult] = useState({ success: null, message: '' })
+function CoverForum() {
+    const [topics, setTopics] = useState([]);
+    const [newTopic, setNewTopic] = useState({ title: '', body: '' });
+    const [postResult, setPostResult] = useState({ success: null, message: '' });
 
+    // Function to handle submission of a new topic
     const handleTopicSubmit = () => {
         if (newTopic.title.trim() && newTopic.body.trim()) {
-            setTopics([...topics, { ...newTopic, replies: [] }])
-            setNewTopic({ title: '', body: '' })
-            setPostResult({ success: true, message: 'Topic posted successfully!' })
+            setTopics([...topics, { ...newTopic, replies: [] }]);
+            setNewTopic({ title: '', body: '' });
+            setPostResult({ success: true, message: 'Topic posted successfully!' });
         } else {
-            setPostResult({ success: false, message: 'Please provide both title and body for the topic.' })
+            setPostResult({ success: false, message: 'Please provide both title and body for the topic.' });
         }
-    }
+    };
 
+    // Function to handle submission of a reply to a topic
     const handleReplySubmit = (topicIndex, replyContent) => {
-        const updatedTopics = [...topics]
-        updatedTopics[topicIndex].replies.push(replyContent)
-        setTopics(updatedTopics)
-    }
-
-    const clearPostResult = () => {
-        setPostResult({ success: null, message: '' })
-    }
+        const updatedTopics = [...topics];
+        updatedTopics[topicIndex].replies.push(replyContent);
+        setTopics(updatedTopics);
+    };
 
     return (
         <div>
@@ -75,7 +74,9 @@ const CoverForum = () => {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label><h3>Body:</h3> </Form.Label>
+                        <Form.Label>
+                            <h3>Body:</h3>{' '}
+                        </Form.Label>
                         <Form.Control
                             as="textarea"
                             rows={3}
@@ -91,7 +92,7 @@ const CoverForum = () => {
                 {postResult.success ? 'Topic posted successfully!' : 'Post Topic'}
             </Button>
         </div>
-    )
+    );
 }
 
-export default CoverForum
+export default CoverForum;
