@@ -51,14 +51,17 @@ function ReviewForm({ songData }) {
                 </FloatingLabel>
 
                 {/* Descriptive text under input fields */}
+                <div style={{ justifyContent:'space-evenly' }}>
                 <Form.Text id="passwordHelpBlock" muted>
-                    Leave a review for this artist's Album or Song and tell us how you really feel
+                    Leave a review for this artist's Album or Song
                 </Form.Text>
-
+                <div style={{ width: '10px' }}>                </div>
                 {/* Submission button to push data to MongoDB */}
+                
                 <Button variant="secondary" size="sm">
                     Submit
                 </Button>
+                </div>
             </Form>
         </div>
     );

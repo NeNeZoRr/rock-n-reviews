@@ -1,6 +1,5 @@
 // API.js
 // Responsible for handling API requests to iTunes
-
 export const API_URL = 'https://itunes.apple.com';
 export const ITUNES_API_LIMIT_HOME = 4;
 export const ITUNES_API_LIMIT_SEARCH = 36;

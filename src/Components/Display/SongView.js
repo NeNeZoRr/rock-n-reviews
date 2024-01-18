@@ -8,6 +8,7 @@ import ReviewForm from './ReviewFormS';
 
 // SongView component
 function SongView() {
+    const [showForm, setShowForm] = useState(false); // Move state declaration to the top
     const [songData, setSongData] = useState({ results: [] });
     const { id } = useParams();
 
@@ -34,22 +35,19 @@ function SongView() {
                     Album:
                     <Card.Link href={`/album/${song.collectionId}`}>{song.collectionName}</Card.Link>
                     <Card.Text>Released on: {song.releaseDate}</Card.Text>
-                    <Button variant="primary">Review this Song</Button>
+                    {/* Button to toggle display of review form */}
+                    <Button variant="secondary" size="sm" onClick={() => setShowForm(!showForm)}>
+                        Review this song
+                    </Button>
+                    {/* Display review form if showForm is true */}
+                    {showForm && <ReviewForm songData={songData} />}
                 </Card.Body>
             </Card>
         </div>
     ));
 
-    const [showForm, setShowForm] = useState(false);
-
     return (
         <div>
-            {/* Button to toggle display of review form */}
-            <Button variant="secondary" size="sm" onClick={() => setShowForm(!showForm)}>
-                Review this song
-            </Button>
-            {/* Display review form if showForm is true */}
-            {showForm && <ReviewForm songData={songData} />}
             {/* Display song details */}
             {songDisplay}
         </div>
