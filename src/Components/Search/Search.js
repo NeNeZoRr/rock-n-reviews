@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import Cover from '../Covers/Cover'
 import { searchITunes } from '../API/Api'
+import Gallery from '../Gallery/Gallery'
 
-function Search({ message }) {
+function Search() {
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
     const handleSearch = async () => {
         try {
-            const results = await searchITunes(searchTerm, 'US', 'all');
+            const results = await searchITunes(searchTerm);
             setSearchResults(results);
+            console.log(results)
         } catch (error) {
             console.error("Error in search:", error);
         }
     }
+
+
     return (
         <div>
             <input
@@ -22,11 +26,10 @@ function Search({ message }) {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button onClick={handleSearch}>Search</button>
-            <p>{message}</p>
-            {searchResults && searchResults.map((item) => (
+            <a href={`/${searchTerm}/Gallery`}>  <button onClick={handleSearch}> Search</button></a>
+                {searchResults && searchResults.map((item) => (
                 <Cover key={item.trackId} item={item} />
-            ))}
+                ))}
         </div>
     )
 }

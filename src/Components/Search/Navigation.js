@@ -11,7 +11,7 @@ function Navigation() {
     document.title = 'Rock-n-Reviews'
   }, [])
 
-  const earch = (e) => {
+  const search = (e) => {
     e.preventDefault();
     if (searchTerm.trim() !== '') {
       navigate(`/search/${searchTerm}`)

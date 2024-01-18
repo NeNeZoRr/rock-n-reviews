@@ -29,9 +29,10 @@ export async function fetchRandomAlbumsAndSongs() {
 
 export async function searchITunes(term, country = 'US', media = 'all') {
     try {
-        const apiUrl = `${BASE_URL}/search?term=${term}&country=${country}&media=${media}`
+        const apiUrl = `${BASE_URL}/search?term=${term}&entity=allArtist&attribute=allArtistTerm&entity=album`
         const response = await fetch(apiUrl)
         const searchData = await response.json()
+        // console.log(searchData)
         return searchData.results
     } catch (error) {
         console.error('Error searching iTunes:', error)

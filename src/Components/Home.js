@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Carousel, Card, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { fetchRandomAlbumsAndSongs, searchITunes } from './API/Api'
-import AlbumCover from './Covers/AlbumCover'
-import SongCover from './Covers/SongCover'
-import Search from './Search/Search'
+// import AlbumCover from './Covers/AlbumCover'
+// import SongCover from './Covers/SongCover'
+// import Search from './Gallery/Search'
 
 function Home() {
   const [albums, setAlbums] = useState([])
   const [songs, setSongs] = useState([])
-  const [searchResults, setSearchResults] = useState([])
+  // const [searchResults, setSearchResults] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {

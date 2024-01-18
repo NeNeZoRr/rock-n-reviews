@@ -1,0 +1,14 @@
+.Cards {
+    margin:auto;
+}
+
+.cardImg{
+    height: 10px;
+}
+
+.body{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #2B303A;
+}

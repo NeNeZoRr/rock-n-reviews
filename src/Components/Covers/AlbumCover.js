@@ -6,3 +6,4 @@ const AlbumCover = ({ album }) => (
 )
 
 export default AlbumCover
+
