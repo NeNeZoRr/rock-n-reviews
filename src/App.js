@@ -9,11 +9,14 @@ import SearchResultsPage from './Components/Covers/SearchResultsPage';
 import CoverForum from './Components/Forum/CoverForum';
 import Navigation from './Components/Navigation';
 import Reviews from './Components/Review/Reviews';
+import { UserProvider } from './Components/Regs/User_Context';
+import Logreg from './Components/Regs/Login_register';
 
 // Main App component
 function App() {
   // Render the App component with navigation and routing for different sections
   return (
+    <UserProvider>
     <Router>
       <div className="App">
         <Navigation />
@@ -24,9 +27,11 @@ function App() {
           <Route path="/song/:id" element={<SongView />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/forum" element={<CoverForum />} />
+          <Route path="/Logreg" element={<Logreg />} />
         </Routes>
       </div>
     </Router>
+    </UserProvider>
   );
 }
 

@@ -4,9 +4,11 @@
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useUser } from '../Components/Regs/User_Context';
 
 // Function component for Navigation
 function Navigation() {
+    const {  userName, logout } = useUser();
     // Render the Navigation component with navigation links
     return (
         <Navbar className="bg-light-grey">
@@ -28,9 +30,19 @@ function Navigation() {
                             <Nav.Link as={Link} to="/reviews">
                                 Reviews
                             </Nav.Link>
-                            <Nav.Link as={Link} to="/logreg">
-                                Login/Register
-                            </Nav.Link>
+                            <Nav.Item>
+                        {userName ? (
+                            // User is logged in, render username and logout button
+                            <>
+                                
+                                <span className="navbar-text mr-2">Welcome, {userName}</span>
+                                <Nav.Link onClick={logout}>Logout</Nav.Link>
+                            </>
+                        ) : (
+                            // User is not logged in, render login/register link
+                            <Nav.Link as={Link} to="/Logreg">Login/Register</Nav.Link>
+                        )}
+                    </Nav.Item>
                         </Nav>
                     </h4>
                 </div>
