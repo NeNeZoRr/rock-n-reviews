@@ -1,5 +1,4 @@
 import Card from 'react-bootstrap/Card';
-import './Gallery.css'
 
 const GalleryItem = ({ item }) =>{
     // console.log(item)

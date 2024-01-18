@@ -1,7 +1,6 @@
-import  { useState } from 'react'
-import Cover from '../Covers/Cover'
+import { useState } from 'react'
 import { searchITunes } from '../API/Api'
-import Gallery from '../Gallery/Gallery'
+import Gallery from './Gallery/Gallery'
 
 function Search() {
     const [searchTerm, setSearchTerm] = useState('')
@@ -11,7 +10,7 @@ function Search() {
         try {
             const results = await searchITunes(searchTerm);
             setSearchResults(results);
-            console.log(results)
+            // console.log(results)
         } catch (error) {
             console.error("Error in search:", error);
         }
@@ -26,10 +25,8 @@ function Search() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <a href={`/${searchTerm}/Gallery`}>  <button onClick={handleSearch}> Search</button></a>
-                {searchResults && searchResults.map((item) => (
-                <Cover key={item.trackId} item={item} />
-                ))}
+            <button onClick={handleSearch}> Search</button>
+            <Gallery results={searchResults}/>
         </div>
     )
 }
