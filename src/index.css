@@ -8,13 +8,20 @@ body {
   background-color: #ff9f46;
   padding: 0;
   font-size: 16px;
+  font-weight: bold;
+}
+
+.bg-light-grey {
+  background-color: #2e4057;
+}
+
+.Navbrand {
+  color: white;
+  font-weight: bold;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.bg-light-grey {
-  background-color: #007fb9;
 }

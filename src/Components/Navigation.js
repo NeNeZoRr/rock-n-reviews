@@ -10,7 +10,7 @@ function Navigation() {
     // Render the Navigation component with navigation links
     return (
         <Navbar className="bg-light-grey">
-            <Container>
+            <Container className='NavBar'>
                 <h1>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '-10rem' }}>
                         <Navbar.Brand style={{ fontSize: '1.5em' }} as={Link} to="/">
