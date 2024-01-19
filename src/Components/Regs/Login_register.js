@@ -1,7 +1,7 @@
 import { useState } from "react";
-import '../App.css';
-import { Login } from "./Login";
-import Register from "./Register";
+import '../../App.css';
+import Login from "./Login";
+import Register from "./Register"
 
 
 const Logreg = () => {
