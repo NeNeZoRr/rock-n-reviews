@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import ReviewsList from './ReviewsList'; // Adjust the path as needed
 
 const Reviews = () => {
     return (  
         <>
-        Reviews
+            <h1>Reviews</h1>
+            <ReviewsList />
         </>
-    )
-}
+    );
+};
 
-export default Reviews
+export default Reviews;

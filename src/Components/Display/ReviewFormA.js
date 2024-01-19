@@ -1,16 +1,54 @@
-// ReviewForm.js
-// Component for submitting reviews for an album or song
-
-import React from 'react';
+import React, { useState } from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 
 // ReviewForm component
 function ReviewForm({ albumData }) {
-    // console.log(albumData)
+    // State to store form data
+    const [formData, setFormData] = useState({
+        artist: albumData.results[0].artistName,
+        albumTitle: albumData.results[0].collectionName,
+        rating: '',
+        comments: '',
+    });
+
+    // Handler for input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    // Handler for form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Perform any additional validation if needed
+
+        // Send form data to your back end
+        fetch('http://localhost:8080/reviews', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+})
+
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the back end if needed
+            console.log('Review submitted successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error submitting review:', error);
+        });
+    };
+
     return (
         <div>
             {/* Form for submitting reviews */}
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 {/* Fields for artist, album title, and username */}
                 <Form.Group className="mb-3">
                     <Form.Label>Artist</Form.Label>
@@ -23,7 +61,12 @@ function ReviewForm({ albumData }) {
 
                 {/* Dropdown for rating */}
                 <FloatingLabel controlId="floatingSelect" label="Rating">
-                    <Form.Select aria-label="Floating label select example">
+                    <Form.Select
+                        aria-label="Floating label select example"
+                        name="rating"
+                        onChange={handleInputChange}
+                        value={formData.rating}
+                    >
                         <option>Best out of 5</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -39,6 +82,9 @@ function ReviewForm({ albumData }) {
                         as="textarea"
                         placeholder="Tell us how you really feel"
                         style={{ height: '100px' }}
+                        name="comments"
+                        onChange={handleInputChange}
+                        value={formData.comments}
                     />
                 </FloatingLabel>
 
@@ -48,7 +94,7 @@ function ReviewForm({ albumData }) {
                 </Form.Text>
 
                 {/* Submission button to push data to MongoDB */}
-                <Button variant="secondary" size="sm">
+                <Button variant="secondary" size="sm" type="submit">
                     Submit
                 </Button>
             </Form>
@@ -57,3 +103,4 @@ function ReviewForm({ albumData }) {
 }
 
 export default ReviewForm;
+
