@@ -9,24 +9,29 @@ import SearchResultsPage from './Components/Covers/SearchResultsPage';
 import CoverForum from './Components/Forum/CoverForum';
 import Navigation from './Components/Navigation';
 import Reviews from './Components/Review/Reviews';
+import { UserProvider } from './Components/Regs/User_Context';
+import Logreg from './Components/Regs/Login_register';
 
 // Main App component
 function App() {
   // Render the App component with navigation and routing for different sections
   return (
-    <Router>
-      <div className="App">
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search-results" element={<SearchResultsPage />} />
-          <Route path="/album/:id" element={<AlbumView />} />
-          <Route path="/song/:id" element={<SongView />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path="/forum" element={<CoverForum />} />
-        </Routes>
-      </div>
-    </Router>
+    <UserProvider>
+      <Router>
+        <div className="App">
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/search-results" element={<SearchResultsPage />} />
+            <Route path="/album/:id" element={<AlbumView />} />
+            <Route path="/song/:id" element={<SongView />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/forum" element={<CoverForum />} />
+            <Route path="/Logreg" element={<Logreg />} />
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 

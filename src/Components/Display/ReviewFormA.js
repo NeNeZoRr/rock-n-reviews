@@ -3,15 +3,21 @@
 
 import React from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
+import { useUser } from '../Regs/User_Context';
 
 // ReviewForm component
 function ReviewForm({ albumData }) {
+    const { userName } = useUser();
     // console.log(albumData)
     return (
         <div>
             {/* Form for submitting reviews */}
             <Form>
                 {/* Fields for artist, album title, and username */}
+                <Form.Group className="mb-3">
+                    <Form.Label>User</Form.Label>
+                    <Form.Control placeholder={userName} disabled />
+                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Artist</Form.Label>
                     <Form.Control placeholder={albumData.results[0].artistName} disabled />
