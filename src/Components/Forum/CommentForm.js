@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
-import Form from 'react-bootstrap/Form'
+// Components/Forum/CommentForm.js
+// Form component for submitting comments
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 const CommentForm = ({ onCommentSubmit }) => {
-    const [author, setAuthor] = useState('')
-    const [text, setText] = useState('')
+    const [author, setAuthor] = useState('');
+    const [text, setText] = useState('');
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        onCommentSubmit({ author, text })
-        setAuthor('')
-        setText('')
-    }
+        e.preventDefault();
+        onCommentSubmit({ author, text });
+        setAuthor('');
+        setText('');
+    };
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -37,7 +39,7 @@ const CommentForm = ({ onCommentSubmit }) => {
                 Submit Comment
             </button>
         </Form>
-    )
-}
+    );
+};
 
-export default CommentForm
+export default CommentForm;
