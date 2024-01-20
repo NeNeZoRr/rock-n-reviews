@@ -9,6 +9,7 @@ import ReviewForm from './ReviewFormA';
 // AlbumView component
 function AlbumView() {
     const [albumData, setAlbumData] = useState({ results: [] });
+    const [commentData, setCommentData] = useState()
     const { id } = useParams();
 
     useEffect(() => {
@@ -26,6 +27,25 @@ function AlbumView() {
 
         fetchData();
     }, [id]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                setCommentData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchData();
+    }, [id]);
+
+    console.log("album id", id)
+    console.log("comment data", commentData)
+
 
     // Display each song as a Card in a Container
     const albumDisplay = albumData.results.map(song => (
@@ -57,6 +77,7 @@ function AlbumView() {
             <Button variant="secondary" size="sm" onClick={() => setShowForm(!showForm)}>
                 Review this album
             </Button>
+            <h1>texting{albumData.collectionId}</h1>
             {/* Display the review form if showForm is true */}
             {showForm && <ReviewForm albumData={albumData} />}
             {/* Display the album details */}

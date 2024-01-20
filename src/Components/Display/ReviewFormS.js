@@ -1,37 +1,85 @@
 // ReviewForm.js
 // Component for submitting reviews for a song
-import React from 'react';
+import React, { useState } from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 
 // ReviewForm component
 function ReviewForm({ songData }) {
+    console.log(songData.results[0].trackId)
+    // State to store form data
+    const [formData, setFormData] = useState({
+        artist: songData.results[0].artistName,
+        albumTitle: songData.results[0].collectionName,
+        trackName: songData.results[0].trackName,
+        trackId: songData.results[0].trackId,
+        rating: '',
+        comments: '',
+    });
+
+    // Handler for input changes
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    // Handler for form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Perform any additional validation if needed
+
+        // Send form data to your back end
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/song-reviews`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the back end if needed
+                console.log('Review submitted successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error submitting review:', error);
+            });
+    };
+
     return (
         <div>
             {/* Form for submitting reviews */}
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 {/* Fields for artist, album title, song title, and username */}
                 <Form.Group className="mb-3">
                     <Form.Label>Artist</Form.Label>
-                    {songData.results.map((song, index) => (
-                        <Form.Control key={index} placeholder={song.artistName} disabled />
-                    ))}
+                    <Form.Control placeholder={songData.results[0].artistName} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Album Title</Form.Label>
-                    {songData.results.map((song, index) => (
-                        <Form.Control key={index} placeholder={song.collectionName} disabled />
-                    ))}
+                    <Form.Control placeholder={songData.results[0].collectionName} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Song Title</Form.Label>
-                    {songData.results.map((song, index) => (
-                        <Form.Control key={index} placeholder={song.trackName} disabled />
-                    ))}
+                    <Form.Control placeholder={songData.results[0].trackName} disabled />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Track Id</Form.Label>
+                    <Form.Control placeholder={songData.results[0].trackId} hidden />
                 </Form.Group>
 
                 {/* Dropdown for rating */}
                 <FloatingLabel controlId="floatingSelect" label="Rating">
-                    <Form.Select aria-label="Floating label select example">
+                    <Form.Select
+                        aria-label="Floating label select example"
+                        name="rating"
+                        onChange={handleInputChange}
+                        value={formData.rating}
+                    >
                         <option>Best out of 5</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -47,20 +95,23 @@ function ReviewForm({ songData }) {
                         as="textarea"
                         placeholder="Tell us how you really feel"
                         style={{ height: '100px' }}
+                        name="comments"
+                        onChange={handleInputChange}
+                        value={formData.comments}
                     />
                 </FloatingLabel>
 
                 {/* Descriptive text under input fields */}
-                <div style={{ justifyContent:'space-evenly' }}>
-                <Form.Text id="passwordHelpBlock" muted>
-                    Leave a review for this artist's Album or Song
-                </Form.Text>
-                <div style={{ width: '10px' }}>                </div>
-                {/* Submission button to push data to MongoDB */}
-                
-                <Button variant="secondary" size="sm">
-                    Submit
-                </Button>
+                <div style={{ justifyContent: 'space-evenly' }}>
+                    <Form.Text id="passwordHelpBlock" muted>
+                        Leave a review for this artist's Album or Song
+                    </Form.Text>
+                    <div style={{ width: '10px' }}>                </div>
+                    {/* Submission button to push data to MongoDB */}
+
+                    <Button variant="secondary" size="sm" type="submit">
+                        Submit
+                    </Button>
                 </div>
             </Form>
         </div>
