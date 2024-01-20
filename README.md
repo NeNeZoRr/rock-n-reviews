@@ -1,52 +1,68 @@
-Rock-n-Reviews
+````markdown
+# Rock-n-Reviews
+
 Rock-n-Reviews is a music review site that allows users to search for their favorite albums or songs by an artist, rate them, and engage in discussions through a comment section. Additionally, the platform features a section showcasing the top 10 rated songs.
 
-Getting Started
+## Getting Started
+
 To run Rock-n-Reviews locally, follow these steps:
 
-Prerequisites
-Ensure that you have the Rock-n-Review backend server set up and running.
+### Prerequisites
 
-Installation
-Clone this repository:
+Ensure that you have the [Rock-n-Review backend server](https://github.com/tamccullough88/Rock-n-review-backend) set up and running.
 
-bash
-Copy code
-git clone https://github.com/NeNeZoRr/rock-n-reviews.git
-Navigate to the project directory:
+### Installation
 
-bash
-Copy code
-cd rock-n-reviews
-Install dependencies:
+1. Clone this repository:
 
-Install dependencies:
+   ```bash
+   git clone https://github.com/NeNeZoRr/rock-n-reviews.git
+   ```
+````
 
-bash
-Copy code
-npm install react-bootstrap bootstrap react-router-dom axios mongoose bcrypt
+2. Navigate to the project directory:
 
-bash
-Copy code
-npm start
-The application should now be running at http://localhost:3000.
+   ```bash
+   cd rock-n-reviews
+   ```
 
-Features
-Search: Easily find your favorite albums or songs by entering the artist's name.
-Rate: Share your opinion by rating albums or songs.
-Comment: Engage in discussions with other users through the comment section.
-Top 10: Explore the top 10 rated songs on the platform.
-Contributing
+3. Install dependencies:
+
+   ```bash
+   npm install node react-bootstrap bootstrap react-router-dom axios mongoose bcrypt cors dotenv mongodb
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+   The application should now be running at `http://localhost:3000`.
+
+## Features
+
+- **Search**: Easily find your favorite albums or songs by entering the artist's name.
+- **Rate**: Share your opinion by rating albums or songs.
+- **Comment**: Engage in discussions with other users through the comment section.
+- **Top 10**: Explore the top 10 rated songs on the platform.
+
+## Contributing
+
 Contributions are welcome! If you'd like to contribute to Rock-n-Reviews, please follow these steps:
 
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Make your changes and commit them with descriptive messages.
-Push your changes to your fork.
-Create a pull request to the Test-2.1 branch of the original repository.
-License
-This project is licensed under the MIT License.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your changes to your fork.
+5. Create a pull request to the `Test-2.1` branch of the original repository.
 
-Acknowledgments
-The Rock-n-Review backend server by tamccullough88.
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- The Rock-n-Review backend server by [tamccullough88](https://github.com/tamccullough88).
+
 Feel free to explore, contribute, and rock on with Rock-n-Reviews!
