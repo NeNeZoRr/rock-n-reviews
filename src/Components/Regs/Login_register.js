@@ -11,7 +11,7 @@ const Logreg = () => {
     }
 
     return (
-        <div>
+        <div style={{height: '100vh'}}>
             {formType === 'login' ? (
             <Login onFormSwitch={handleFormSwitch} />
             ) : (

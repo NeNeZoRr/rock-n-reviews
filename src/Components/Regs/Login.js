@@ -31,9 +31,9 @@ const Login = (props) => {
             if (!response.ok) {
                 console.error('Authentication failed:', response.status, response.statusText);
                 // Handle authentication failure
-                 // Log the response for debugging
-            const errorResponse = await response.json();
-            console.error('Error details:', errorResponse);
+                // Log the response for debugging
+                const errorResponse = await response.json();
+                console.error('Error details:', errorResponse);
             } else {
                 console.log('Login successful at', new Date().toISOString());
                 // Access userName from context and log it
@@ -46,17 +46,20 @@ const Login = (props) => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+            <form onSubmit={handleSubmit} style={{ color: 'white', display: 'flex', flexDirection: 'column' }}>
                 <label htmlFor="user">User Name:</label>
                 <input value={userName} onChange={(e) => setUserName(e.target.value)} type="text" placeholder="User Name" />
+                <div style={{ height: '10px' }}></div>
                 <label htmlFor="pass">Password:</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" required placeholder="********" />
+                <div style={{ height: '10px' }}></div>
                 <button type="submit">Log In</button>
-            </form>
+            <div style={{ width: '20px' }}></div>
             <button onClick={() => props.onFormSwitch('register')}> Need to register?</button>
-        </>
+            </form>
+        </div>
     );
-};
+}
 
 export default Login;
