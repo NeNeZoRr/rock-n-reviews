@@ -2,6 +2,13 @@
 
 Rock-n-Reviews is a music review site that allows users to search for their favorite albums or songs by an artist, rate them, and engage in discussions through a comment section. Additionally, the platform features a section showcasing the top 10 rated songs.
 
+## Contributors
+
+C-jay Solly at https://github.com/Csolly89 --
+Thomas McCullough at https://github.com/tamccullough88 --
+Lin Zorrilla at https://github.com/NeNeZoRr --
+Charles D. at
+
 ## Getting Started
 
 To run Rock-n-Reviews locally, follow these steps:
