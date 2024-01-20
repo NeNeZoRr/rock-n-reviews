@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Login = (props) => {
-    const [user, setUser] = useState('');
+	const [user, setUser] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(user);
-    }
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(user);
+	};
 
-    return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="user">User Name:</label>
-                <input value={user} onChange={(e) => setUser(e.target.value)} type="user Name" placeholder="User Name" />
-                <button type="submit">Log In</button>
-            </form>
-            <button onClick={() => props.onFormSwitch('register')}> Need to register?</button>
-        </>
-    )
-}
+	return (
+		<div style={{ height: "100vh" }}>
+			<form onSubmit={handleSubmit}>
+				<label htmlFor="user">User Name:</label>
+				<input
+					value={user}
+					onChange={(e) => setUser(e.target.value)}
+					type="user Name"
+					placeholder="User Name"
+				/>
+				<button type="submit">Log In</button>
+			</form>
+			<button onClick={() => props.onFormSwitch("register")}>
+				{" "}
+				Need to register?
+			</button>
+		</div>
+	);
+};
 
 export default Login;

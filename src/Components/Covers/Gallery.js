@@ -8,7 +8,13 @@ function Gallery({ data }) {
 					<Col key={item.trackId}>
 						<Card
 							className="Cards"
-							style={{ width: "14vw", margin: "2rem", height: "15vh" }}>
+							style={{
+								width: "14vw",
+								margin: "2rem",
+								height: "15vh",
+								border: "4px solid #33006F",
+								borderRadius: "15px",
+							}}>
 							<Card.Img
 								style={{ objectFit: "cover", objectPosition: "center" }}
 								className="cardImg"

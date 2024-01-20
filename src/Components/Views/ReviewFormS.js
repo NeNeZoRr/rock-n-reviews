@@ -6,13 +6,7 @@ function ReviewForm({ songData }) {
 	// console.log(songData)
 	return (
 		<div>
-			{/* toggle button for true/false if name be disabled for being anonymous? */}
 			<Form>
-				{/* <Form.Check
-            type="switch"
-            id="custom-switch"
-            label="Anonymous?" /> */}
-				{/* // disabled fields for song/album data and userName */}
 				<Form.Group className="mb-3">
 					<Form.Label>Artist</Form.Label>
 					{songData.results.map((song, index) => (

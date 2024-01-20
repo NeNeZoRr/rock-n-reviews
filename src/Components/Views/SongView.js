@@ -5,7 +5,9 @@ import Button from "react-bootstrap/Button";
 import ReviewForm from "./ReviewFormS";
 
 function SongView() {
+	const [showForm, setShowForm] = useState(false);
 	const [songData, setSongData] = useState({ results: [] });
+	// const [value, setValue] = useState(1);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -16,12 +18,20 @@ function SongView() {
 			const data = await response.json();
 
 			setSongData(data);
-			// console.log(data)
+			// console.log(data);
 		};
 		fetchData();
 	}, [id]);
 
-	const [showForm, setShowForm] = useState(false);
+	// useEffect(() => {
+	// 	if (value % 2 === 0) play();
+	// }, [value]);
+
+	// function play() {
+	// 	new Audio(songData.results.previewUrl).play();
+	// }
+	// console.log(songData.results.previewUrl);
+
 	const songDisplay = songData.results.map((song) => {
 		return (
 			<div key={song.trackId}>
@@ -68,6 +78,14 @@ function SongView() {
 							Review this song
 						</Button>
 						{showForm && <ReviewForm songData={songData} />}
+						{/* <Button
+							style={{}}
+							id="play"
+							onClick={() => setValue(value + 1)}
+							variant="primary"
+							size="sm">
+							Play
+						</Button> */}
 					</Card.Body>
 				</Card>
 			</div>
