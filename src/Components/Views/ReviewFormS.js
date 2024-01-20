@@ -37,7 +37,10 @@ function ReviewForm({ songData }) {
 				</Form.Group>
 
 				{/* // dropdown option for rating */}
-				<FloatingLabel controlId="floatingSelect" label="Rating">
+				<FloatingLabel
+					style={{ marginBottom: "1rem" }}
+					controlId="floatingSelect"
+					label="Rating">
 					<Form.Select aria-label="Floating label select example">
 						<option>Best out of 5</option>
 						<option value="1">One</option>

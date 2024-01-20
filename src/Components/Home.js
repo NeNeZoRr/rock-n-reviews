@@ -159,8 +159,10 @@ const renderCard = (data, type) => (
 						style={{ height: "200px", objectFit: "cover" }}
 					/>
 					<Card.Body>
-						<Card.Title>{item.collectionName || item.trackName}</Card.Title>
-						<Card.Text>
+						<Card.Title style={{ color: "white" }}>
+							{item.collectionName || item.trackName}
+						</Card.Title>
+						<Card.Text style={{ color: "white" }}>
 							{type === "album"
 								? "Artist: " + item.artistName
 								: "Track: " + item.trackName}

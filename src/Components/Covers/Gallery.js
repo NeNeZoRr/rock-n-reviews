@@ -2,13 +2,13 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 
 function Gallery({ data }) {
 	return (
-		<Container>
+		<Container style={{ width: "100dvw" }}>
 			<Row xs={1} md={4}>
 				{data.map((item) => (
 					<Col key={item.trackId}>
 						<Card
 							className="Cards"
-							style={{ width: "14vw", margin: "3rem", height: "15vh" }}>
+							style={{ width: "14vw", margin: "2rem", height: "15vh" }}>
 							<Card.Img
 								style={{ objectFit: "cover", objectPosition: "center" }}
 								className="cardImg"
