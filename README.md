@@ -1,4 +1,3 @@
-````markdown
 # Rock-n-Reviews
 
 Rock-n-Reviews is a music review site that allows users to search for their favorite albums or songs by an artist, rate them, and engage in discussions through a comment section. Additionally, the platform features a section showcasing the top 10 rated songs.
@@ -13,6 +12,7 @@ Ensure that you have the [Rock-n-Review backend server](https://github.com/tamcc
 
 ### Installation
 
+````markdown
 1. Clone this repository:
 
    ```bash
