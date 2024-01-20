@@ -29,13 +29,13 @@ function CoverForum() {
     };
 
     return (
-        <div>
-            <h1 style={{ textAlign: 'center' }}>Forum</h1>
+        <div style={{height: '100vh'}}>
+            <h1 style={{ textAlign: 'center', color:'white' }}>Forum</h1>
             {postResult.message && (
                 <div style={{ color: postResult.success ? 'green' : 'red', margin: '10px 0' }}>{postResult.message}</div>
             )}
             <div>
-                <h2>Topics </h2>
+                <h2 style={{color:'white'}} >Topics </h2>
                 <div style={{ marginBottom: '30px' }}></div>
                 <Accordion>
                     {topics.map((topic, index) => (
@@ -44,7 +44,7 @@ function CoverForum() {
                             <Accordion.Body>
                                 <Card.Text>{topic.body}</Card.Text>
                                 <div>
-                                    <h4>Replies:</h4>
+                                    <h4 style={{color:'white'}}>Replies:</h4>
                                     {topic.replies.map((reply, replyIndex) => (
                                         <div key={replyIndex}>
                                             <Card.Text>{reply}</Card.Text>
@@ -61,7 +61,7 @@ function CoverForum() {
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>
-                            <h3>Title:</h3>
+                            <h3 style={{color:'white'}}>Title:</h3>
                         </Form.Label>
                         <Form.Control
                             type="text"
@@ -73,7 +73,7 @@ function CoverForum() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>
-                            <h3>Body:</h3>{' '}
+                            <h3 style={{color:'white'}} >Body:</h3>{' '}
                         </Form.Label>
                         <Form.Control
                             as="textarea"
