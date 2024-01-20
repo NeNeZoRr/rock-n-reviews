@@ -24,10 +24,12 @@ function SongView() {
         };
         fetchData();
     }, [id]);
+
+    //pull comment data from backend
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`;
+                const url = `${process.env.REACT_APP_BACKEND_URL}/song-reviews/${id}`;
                 const response = await fetch(url);
                 const data = await response.json();
 

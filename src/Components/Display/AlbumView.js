@@ -28,6 +28,7 @@ function AlbumView() {
         fetchData();
     }, [id]);
 
+    //pull comment data from backend
     useEffect(() => {
         const fetchData = async () => {
             try {
