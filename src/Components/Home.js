@@ -10,7 +10,6 @@ import {
 	fetchRandomAlbumsAndSongs,
 	generateRandomSearchTerm,
 } from "../API";
-import Gallery from "./Covers/Gallery";
 
 // Function component for Home
 function Home() {
