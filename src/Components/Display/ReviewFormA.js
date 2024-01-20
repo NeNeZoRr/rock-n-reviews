@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
+import { useUser } from '../Regs/User_Context';
 
 // ReviewForm component
 function ReviewForm({ albumData }) {
     // State to store form data
+    const { userName } = useUser();
     const [formData, setFormData] = useState({
         artist: albumData.results[0].artistName,
         albumTitle: albumData.results[0].collectionName,
@@ -51,6 +53,10 @@ function ReviewForm({ albumData }) {
             <Form onSubmit={handleSubmit}>
                 {/* Fields for artist, album title, and username */}
                 <Form.Group className="mb-3">
+                    <Form.Label>User</Form.Label>
+                    <Form.Control placeholder={userName} disabled />
+                </Form.Group>
+                <Form.Group className="mb-3">
                     <Form.Label>Artist</Form.Label>
                     <Form.Control placeholder={albumData.results[0].artistName} disabled />
                 </Form.Group>
@@ -58,7 +64,9 @@ function ReviewForm({ albumData }) {
                     <Form.Label>Album Title</Form.Label>
                     <Form.Control placeholder={albumData.results[0].collectionName} disabled />
                 </Form.Group>
-
+                <Form.Group className="mb-3">
+                    <Form.Control placeholder={albumData.results[0].collectionId} hidden/>
+                </Form.Group>
                 {/* Dropdown for rating */}
                 <FloatingLabel controlId="floatingSelect" label="Rating">
                     <Form.Select

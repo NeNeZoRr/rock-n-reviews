@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [userName, setUserName] = useState('');
     const { _id } = useParams();
 

@@ -8,6 +8,7 @@ import ReviewForm from './ReviewFormA';
 
 function AlbumView() {
     const [ albumData, setAlbumData ] = useState({ results: []})
+    const [commentData, setCommentData] = useState()
     const { id } = useParams()
 
     useEffect (() => {
@@ -21,6 +22,21 @@ function AlbumView() {
         fetchData()
         // console.log(albumData)
     }, [id])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                setCommentData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        fetchData();
+    }, [id]);
 
     const albumDisplay = albumData.results.map(song => {
         return (

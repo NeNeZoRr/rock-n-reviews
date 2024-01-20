@@ -6,7 +6,7 @@ function ReviewsList() {
 
     // Fetch reviews from the backend
     useEffect(() => {
-        fetch('http://localhost:8080/api/reviews')
+        fetch('http://localhost:8080/reviews/all')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -19,7 +19,7 @@ function ReviewsList() {
 
     return (
         <div>
-            <h2>Reviews</h2>
+            <h2>Review</h2>
             <ul>
                 {reviews.map((review, index) => (
                     <li key={index}>
