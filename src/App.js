@@ -16,9 +16,11 @@ import Logreg from './Components/Regs/Login_register';
 function App() {
   // Render the App component with navigation and routing for different sections
   return (
-    <UserProvider>
+    
     <Router>
+      
       <div className="App">
+        <UserProvider>
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,9 +31,10 @@ function App() {
           <Route path="/forum" element={<CoverForum />} />
           <Route path="/Logreg" element={<Logreg />} />
         </Routes>
+        </UserProvider>
       </div>
     </Router>
-    </UserProvider>
+    
   );
 }
 

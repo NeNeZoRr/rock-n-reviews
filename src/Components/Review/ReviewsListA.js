@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../../App.css"
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 // ReviewsList component
@@ -29,14 +30,14 @@ function ReviewsList() {
                 {top10Albums.map((review, index) => (
                     <Col key={index}>
                         <Card
-                            className="Cards"
-                            style={{ width: '14vw', margin: '3rem', height: '15vh' }}
+                            className="cards"
+                            style={{ width: '17vw', margin: '3rem', height: '24vh' }}
                         >
                             <Card.Body>
-                                <Card.Title>{review.artist}</Card.Title>
-                                <Card.Text>Album: {review.albumTitle}</Card.Text>
-                                <Card.Text>Rating: {review.rating}</Card.Text>
-                                <Card.Text>Comments: {review.comments}</Card.Text>
+                                <Card.Title style={{ color:'white'}}>{review.artist}</Card.Title>
+                                <Card.Text style={{ color:'white'}}>Album: {review.albumTitle}</Card.Text>
+                                <Card.Text style={{ color:'white'}}>Rating: {review.rating}</Card.Text>
+                                <Card.Text style={{ color:'white'}}>Comments: {review.comments}</Card.Text>
                             </Card.Body>
                         </Card>
                     </Col>
