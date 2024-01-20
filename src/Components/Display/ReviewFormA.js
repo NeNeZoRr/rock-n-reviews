@@ -9,6 +9,7 @@ function ReviewForm({ albumData }) {
     const [formData, setFormData] = useState({
         artist: albumData.results[0].artistName,
         albumTitle: albumData.results[0].collectionName,
+        albumId: albumData.results[0].collectionId,
         rating: '',
         comments: '',
     });
@@ -65,8 +66,9 @@ function ReviewForm({ albumData }) {
                     <Form.Control placeholder={albumData.results[0].collectionName} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Control placeholder={albumData.results[0].collectionId} hidden/>
+                    <Form.Control placeholder={albumData.results[0].collectionId} disabled/>
                 </Form.Group>
+
                 {/* Dropdown for rating */}
                 <FloatingLabel controlId="floatingSelect" label="Rating">
                     <Form.Select
