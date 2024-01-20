@@ -11,38 +11,39 @@ import Button from "react-bootstrap/Button";
 import ReviewForm from "./ReviewFormA";
 
 function AlbumView() {
-    const [ albumData, setAlbumData ] = useState({ results: []})
-    const [commentData, setCommentData] = useState()
-    const { id } = useParams()
+	const [showForm, setShowForm] = useState(false);
+	const [albumData, setAlbumData] = useState({ results: [] });
+	const [commentData, setCommentData] = useState();
+	const { id } = useParams();
 
-    useEffect (() => {
-        const fetchData = async () => {
-            const url = `https://itunes.apple.com/lookup?id=${id}&entity=album&entity=song`
-            const response = await fetch(url)
-            const data = await response.json()
+	useEffect(() => {
+		const fetchData = async () => {
+			const url = `https://itunes.apple.com/lookup?id=${id}&entity=album&entity=song`;
+			const response = await fetch(url);
+			const data = await response.json();
 
-            setAlbumData(data)
-        }
-        fetchData()
-    }, [id])
+			setAlbumData(data);
+		};
+		fetchData();
+	}, [id]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`;
-                const response = await fetch(url);
-                const data = await response.json();
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const url = `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`;
+				const response = await fetch(url);
+				const data = await response.json();
 
-                setCommentData(data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        fetchData();
-    }, [id]);
+				setCommentData(data);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+		fetchData();
+	}, [id]);
 
-    const albumDisplay = (
-		<Container style={{ width: "100dvw" }}>
+	const albumDisplay = (
+		<Container style={{ width: "100dvw", height: "100vh" }}>
 			<Row xs={1} md={4}>
 				{albumData.results.map((song) => (
 					<Col key={song.trackId}>
@@ -66,21 +67,22 @@ function AlbumView() {
 		</Container>
 	);
 
-
-    const [showForm, setShowForm] = useState(false);
-
-    return (
+	return (
 		<div>
-			{albumDisplay}
 			<Button
-				style={{ width: "25vw", position: "relative", left: "37vw" }}
-				className="albumButton"
+				style={{
+					width: "25vw",
+					position: "relative",
+					left: "37vw",
+					top: ".5rem",
+				}}
 				variant="secondary"
 				size="sm"
 				onClick={() => setShowForm(!showForm)}>
-				Review this album
+				Review this song
 			</Button>
 			{showForm && <ReviewForm albumData={albumData} />}
+			{albumDisplay}
 		</div>
 	);
 }

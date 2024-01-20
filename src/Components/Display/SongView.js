@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
-import ReviewForm from './ReviewFormS';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+import ReviewForm from "./ReviewFormS";
 
 // SongView component
 function SongView() {
-    const [showForm, setShowForm] = useState(false); // Move state declaration to the top
-    const [songData, setSongData] = useState({ results: [] });
-    const [commentData, setCommentData] = useState()
-    const { id } = useParams();
+	const [showForm, setShowForm] = useState(false); // Move state declaration to the top
+	const [songData, setSongData] = useState({ results: [] });
+	const [commentData, setCommentData] = useState();
+	const { id } = useParams();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            // Fetch song details from iTunes with dynamic id
-            const url = `https://itunes.apple.com/lookup?id=${id}&entity=song`;
-            const response = await fetch(url);
-            const data = await response.json();
+	useEffect(() => {
+		const fetchData = async () => {
+			// Fetch song details from iTunes with dynamic id
+			const url = `https://itunes.apple.com/lookup?id=${id}&entity=song`;
+			const response = await fetch(url);
+			const data = await response.json();
 
-            setSongData(data);
-        };
-        fetchData();
-    }, [id]);
+			setSongData(data);
+		};
+		fetchData();
+	}, [id]);
 
-    //pull comment data from backend
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = `${process.env.REACT_APP_BACKEND_URL}/song-reviews/${id}`;
-                const response = await fetch(url);
-                const data = await response.json();
+	//pull comment data from backend
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const url = `${process.env.REACT_APP_BACKEND_URL}/song-reviews/${id}`;
+				const response = await fetch(url);
+				const data = await response.json();
 
-                setCommentData(data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-        fetchData();
-    }, [id]);
+				setCommentData(data);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+		fetchData();
+	}, [id]);
 
 	const songDisplay = songData.results.map((song) => {
 		return (
-			<div key={song.trackId}>
+			<div style={{ height: "100dvh" }} key={song.trackId}>
 				<Card
 					style={{
 						minHeight: "50vh",
@@ -90,12 +90,12 @@ function SongView() {
 		);
 	});
 
-    return (
-        <div>
-            {/* Display song details */}
-            {songDisplay}
-        </div>
-    );
+	return (
+		<div>
+			{/* Display song details */}
+			{songDisplay}
+		</div>
+	);
 }
 
 export default SongView;
