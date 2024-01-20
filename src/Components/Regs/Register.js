@@ -12,7 +12,7 @@ export const Register = (props) => {
     e.preventDefault();
 
     try {
-      // Add client-side validation
+      // client-side validation
       if (pass !== confirmPass) {
         console.error('Passwords do not match');
         return;

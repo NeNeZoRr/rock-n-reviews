@@ -38,7 +38,7 @@ export async function fetchSearchResults(searchTerm) {
     try {
         const ITUNES_SEARCH_URL = `${API_URL}/search`;
 
-        const searchApiUrl = `${ITUNES_SEARCH_URL}?term=${searchTerm}&limit=${ITUNES_API_LIMIT_SEARCH}`;
+        const searchApiUrl = `${ITUNES_SEARCH_URL}?term=${searchTerm}&entity=allArtist&attribute=allArtistTerm&entity=album&limit=${ITUNES_API_LIMIT_SEARCH}`;
 
         const searchResponse = await fetch(searchApiUrl);
 

@@ -10,7 +10,6 @@ import Gallery from './Covers/Gallery';
 
 // Function component for Home
 function Home() {
-    // State hooks for albums, songs, search results, and clear search
     const [albums, setAlbums] = useState([]);
     const [songs, setSongs] = useState([]);
     const [searchResults, setSearchResults] = useState([]);

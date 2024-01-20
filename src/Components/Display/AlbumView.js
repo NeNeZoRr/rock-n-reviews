@@ -1,6 +1,3 @@
-// AlbumView.js
-// Component for displaying details of an album and allowing reviews
-
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Container, Col, Row, Button } from 'react-bootstrap';
@@ -20,7 +17,6 @@ function AlbumView() {
             setAlbumData(data)
         }
         fetchData()
-        // console.log(albumData)
     }, [id])
 
     useEffect(() => {

@@ -1,6 +1,3 @@
-// SongView.js
-// Component for displaying details and reviews for a song
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
@@ -8,7 +5,7 @@ import ReviewForm from './ReviewFormS';
 
 // SongView component
 function SongView() {
-    const [showForm, setShowForm] = useState(false); // Move state declaration to the top
+    const [showForm, setShowForm] = useState(false); 
     const [songData, setSongData] = useState({ results: [] });
     const { id } = useParams();
 

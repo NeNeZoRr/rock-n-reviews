@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 // ReviewsList component
 function ReviewsList() {
@@ -17,23 +18,35 @@ function ReviewsList() {
             .catch(error => console.error('Error fetching reviews:', error.message));
     }, []);
 
+    // Get top 10 rated albums
+    const top10Albums = reviews
+        .sort((a, b) => b.rating - a.rating) 
+        .slice(0, 10); 
+
     return (
-        <div>
-            <h2>Review</h2>
-            <ul>
-                {reviews.map((review, index) => (
-                    <li key={index}>
-                        <p>Artist: {review.artist}</p>
-                        <p>Album Title: {review.albumTitle}</p>
-                        <p>Rating: {review.rating}</p>
-                        <p>Comments: {review.comments}</p>
-                        <hr />
-                    </li>
+        <Container>
+            <Row xs={1} md={4}>
+                {top10Albums.map((review, index) => (
+                    <Col key={index}>
+                        <Card
+                            className="Cards"
+                            style={{ width: '14vw', margin: '3rem', height: '15vh' }}
+                        >
+                            <Card.Body>
+                                <Card.Title>{review.artist}</Card.Title>
+                                <Card.Text>Album: {review.albumTitle}</Card.Text>
+                                <Card.Text>Rating: {review.rating}</Card.Text>
+                                <Card.Text>Comments: {review.comments}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 ))}
-            </ul>
-        </div>
+            </Row>
+        </Container>
     );
 }
 
 export default ReviewsList;
+
+
 

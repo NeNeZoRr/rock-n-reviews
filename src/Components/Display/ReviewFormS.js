@@ -1,5 +1,3 @@
-// ReviewForm.js
-// Component for submitting reviews for a song
 import React from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
 

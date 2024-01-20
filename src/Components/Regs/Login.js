@@ -13,7 +13,7 @@ const Login = (props) => {
 
         console.log('Sending request with username:', userName, 'and password:', pass);
 
-        let response; // Declare response variable here
+        let response;
 
         try {
             response = await fetch('http://localhost:8080/users/login', {
@@ -30,7 +30,7 @@ const Login = (props) => {
 
             if (!response.ok) {
                 console.error('Authentication failed:', response.status, response.statusText);
-                // Handle authentication failure (display error message, etc.)
+                // Handle authentication failure
                  // Log the response for debugging
             const errorResponse = await response.json();
             console.error('Error details:', errorResponse);

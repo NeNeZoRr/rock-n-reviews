@@ -4,7 +4,6 @@ import { useUser } from '../Regs/User_Context';
 
 // ReviewForm component
 function ReviewForm({ albumData }) {
-    // State to store form data
     const { userName } = useUser();
     const [formData, setFormData] = useState({
         artist: albumData.results[0].artistName,
@@ -27,9 +26,7 @@ function ReviewForm({ albumData }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Perform any additional validation if needed
-
-        // Send form data to your back end
+        // Send form data to the back end
         fetch('http://localhost:8080/reviews', {
     method: 'POST',
     headers: {
@@ -40,7 +37,7 @@ function ReviewForm({ albumData }) {
 
         .then(response => response.json())
         .then(data => {
-            // Handle the response from the back end if needed
+            // Handle the response from the back end
             console.log('Review submitted successfully:', data);
         })
         .catch(error => {

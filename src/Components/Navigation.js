@@ -1,6 +1,3 @@
-// Components/Navigation.js
-// Navigation component for the app
-
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -9,7 +6,6 @@ import { useUser } from '../Components/Regs/User_Context';
 // Function component for Navigation
 function Navigation() {
     const {  userName, logout } = useUser();
-    // Render the Navigation component with navigation links
     return (
         <Navbar className="bg-light-grey">
             <Container>

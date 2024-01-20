@@ -19,7 +19,7 @@ const UserProvider = ({ children }) => {
 
                 const userData = await response.json();
                 setUser(userData);
-                setUserName(userData.userName); // Assuming your user data contains a 'userName' field
+                setUserName(userData.userName);
                 console.log('Fetched user data:', userData);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -31,7 +31,6 @@ const UserProvider = ({ children }) => {
 
     const login = async (userData) => {
         try {
-            // Simulate a server check for authentication
             const response = await fetch('http://localhost:8080/users/login', {
                 method: 'POST',
                 headers: {
@@ -46,11 +45,10 @@ const UserProvider = ({ children }) => {
                 return;
             }
 
-            // If authentication is successful, update the user state
-            const userFromServer = { userName: userData.userName }; // Changed 'username' to 'userName'
+            const userFromServer = { userName: userData.userName };
             console.log('User logged in:', userFromServer);
             setUser(userFromServer);
-            setUserName(userFromServer.userName); // Also changed 'username' to 'userName'
+            setUserName(userFromServer.userName); 
         } catch (error) {
             console.error('Error logging in', error);
         }

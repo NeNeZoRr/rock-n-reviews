@@ -1,5 +1,3 @@
-// Components/Forum/CoverForum.js
-// Forum component displaying topics and replies
 import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
