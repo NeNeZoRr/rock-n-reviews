@@ -28,7 +28,7 @@ function SongReviewsList() {
         const confirmDelete = window.confirm('Are you sure you want to delete this review?');
         if (!confirmDelete) return;
 
-        fetch(`http://localhost:8080/reviews/songs/${reviewId}`, {
+        fetch(`http://localhost:8080/song-reviews/${reviewId}`, {
             method: 'DELETE',
         })
             .then(response => {
