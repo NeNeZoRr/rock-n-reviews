@@ -7,7 +7,7 @@ Rock-n-Reviews is a music review site that allows users to search for their favo
 C-jay Solly at https://github.com/Csolly89 --
 Thomas McCullough at https://github.com/tamccullough88 --
 Lin Zorrilla at https://github.com/NeNeZoRr --
-Charles D. at
+Charles D. at https://github.com/Cwdrian --
 
 ## Getting Started
 
