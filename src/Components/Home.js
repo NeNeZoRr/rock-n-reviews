@@ -17,6 +17,10 @@ function Home() {
 	const [searchResults, setSearchResults] = useState([]);
 	const [clearSearch, setClearSearch] = useState(false);
 
+	useEffect(() => {
+		document.title = "Rock-N-Reviews";
+	}, []);
+
 	// Fetch random albums and songs on mount and every 10 seconds
 	useEffect(() => {
 		const fetchData = async () => {
