@@ -8,7 +8,7 @@ function ReviewsList() {
 
     // Fetch reviews from the backend
     useEffect(() => {
-        fetch('http://localhost:8080/reviews/all')
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/reviews/all`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -24,55 +24,55 @@ function ReviewsList() {
             console.error('Invalid reviewId');
             return;
         }
-    
+
         const confirmDelete = window.confirm('Are you sure you want to delete this review?');
         if (!confirmDelete) return;
-    
-        fetch(`http://localhost:8080/reviews/${reviewId}`, {
+
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/reviews/${reviewId}`, {
             method: 'DELETE',
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            setReviews(reviews.filter(review => review._id !== reviewId));
-        })
-        .catch(error => {
-            console.error('Error deleting review:', error.message);
-            alert('Error deleting review. Please try again.');
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                setReviews(reviews.filter(review => review._id !== reviewId));
+            })
+            .catch(error => {
+                console.error('Error deleting review:', error.message);
+                alert('Error deleting review. Please try again.');
+            });
     };
-    
+
     const handleUpdate = (reviewId, updatedComments) => {
         if (!reviewId) {
             console.error('Invalid reviewId');
             return;
         }
-    
+
         const confirmUpdate = window.confirm('Are you sure you want to update the comments?');
         if (!confirmUpdate) return;
-    
-        fetch(`http://localhost:8080/reviews/${reviewId}`, {
+
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/reviews/${reviewId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ comments: updatedComments }),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            setReviews(reviews.map(review =>
-                review._id === reviewId ? { ...review, comments: updatedComments } : review
-            ));
-        })
-        .catch(error => {
-            console.error('Error updating review:', error.message);
-            alert('Error updating review. Please try again.');
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                setReviews(reviews.map(review =>
+                    review._id === reviewId ? { ...review, comments: updatedComments } : review
+                ));
+            })
+            .catch(error => {
+                console.error('Error updating review:', error.message);
+                alert('Error updating review. Please try again.');
+            });
     };
-    
+
 
     // Get top 10 rated albums
     const top10Albums = reviews

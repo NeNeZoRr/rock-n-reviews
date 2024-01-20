@@ -21,7 +21,7 @@ const Login = (props) => {
 		let response;
 
 		try {
-			response = await fetch("http://localhost:8080/users/login", {
+			response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
 				method: "POST",
 				headers: {
 					Accept: "application/json",

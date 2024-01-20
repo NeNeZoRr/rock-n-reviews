@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/users/${_id}`);
+                const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${_id}`);
                 if (!response.ok) {
                     console.error('Error fetching user data:', response.status, response.statusText);
                     return;
@@ -31,7 +31,7 @@ const UserProvider = ({ children }) => {
 
     const login = async (userData) => {
         try {
-            const response = await fetch('http://localhost:8080/users/login', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -48,7 +48,7 @@ const UserProvider = ({ children }) => {
             const userFromServer = { userName: userData.userName };
             console.log('User logged in:', userFromServer);
             setUser(userFromServer);
-            setUserName(userFromServer.userName); 
+            setUserName(userFromServer.userName);
         } catch (error) {
             console.error('Error logging in', error);
         }
