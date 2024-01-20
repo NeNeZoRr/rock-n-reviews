@@ -7,11 +7,17 @@ import { useUser } from '../Components/Regs/User_Context';
 function Navigation() {
     const {  userName, logout } = useUser();
     return (
-        <Navbar className="bg-light-grey">
+        <Navbar 	style={{
+            width: "100vw",
+            background: "rgb(5,0,68)",
+            background:
+                "linear-gradient(135deg, rgba(5,0,68,1) 0%, rgba(253,123,45,1) 100%)",
+        }} 
+        className="bg-light-grey">
             <Container>
                 <h1>
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '-10rem' }}>
-                        <Navbar.Brand style={{ fontSize: '1.5em' }} as={Link} to="/">
+                        <Navbar.Brand style={{ color: 'white', fontSize: '1.5em' }} as={Link} to="/">
                             Rock-n-Reviews
                         </Navbar.Brand>
                     </div>

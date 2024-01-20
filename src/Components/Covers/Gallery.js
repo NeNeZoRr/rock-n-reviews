@@ -1,35 +1,48 @@
-// Components/Covers/Gallery.js
-// Displays a gallery of items based on provided data
-import GalleryItem from './GalleryItem';
-import PropTypes from 'prop-types';
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 function Gallery({ data }) {
-    // Display a message if no items are available
-    if (!data || data.length === 0) {
-        return <p>No items to display.</p>;
-    }
-
-    // Map through the data and render GalleryItem for each item
-    const display = data.map((item) => (
-        <GalleryItem item={item} key={item.id} />
-    ));
-
-    return <div className="gallery-container">{display}</div>;
+	return (
+		<Container style={{ width: "100dvw" }}>
+			<Row xs={1} md={4}>
+				{data.map((item) => (
+					<Col key={item.trackId}>
+						<Card
+							className="Cards"
+							style={{ width: "14vw", margin: "2rem", height: "15vh" }}>
+							<Card.Img
+								style={{ objectFit: "cover", objectPosition: "center" }}
+								className="cardImg"
+								variant="top"
+								src={item.artworkUrl100}
+								alt="album cover"
+							/>
+							<Card.Body>
+								<Card.Title style={{ color: "white" }}>
+									{item.artistName}
+								</Card.Title>
+								<div style={{ color: "white" }}>
+									{" "}
+									Album:
+									<Card.Link
+										style={{ color: "white" }}
+										href={`/album/${item.collectionId}`}>
+										{" "}
+										{item.collectionName}{" "}
+									</Card.Link>
+								</div>
+								<Card.Text style={{ color: "white" }}>
+									Released on: {item.releaseDate}
+								</Card.Text>
+								<Card.Text style={{ color: "white" }}>
+									Songs: {item.trackCount}
+								</Card.Text>
+							</Card.Body>
+						</Card>
+					</Col>
+				))}
+			</Row>
+		</Container>
+	);
 }
-
-Gallery.propTypes = {
-    data: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            trackName: PropTypes.string.isRequired,
-            collectionName: PropTypes.string,
-            artistId: PropTypes.number.isRequired,
-            artworkUrl100: PropTypes.string,
-            collectionId: PropTypes.number,
-            primaryGenreName: PropTypes.string,
-            releaseDate: PropTypes.string,
-        })
-    ).isRequired,
-};
 
 export default Gallery;

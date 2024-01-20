@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FloatingLabel, Form, Button } from 'react-bootstrap';
-import { useUser } from '../Regs/User_Context';
 
 // ReviewForm component
 function ReviewForm({ albumData }) {
-    const { userName } = useUser();
+    // State to store form data
     const [formData, setFormData] = useState({
         artist: albumData.results[0].artistName,
         albumTitle: albumData.results[0].collectionName,
@@ -26,23 +25,25 @@ function ReviewForm({ albumData }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Send form data to the back end
-        fetch('http://localhost:8080/reviews', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-})
+        // Perform any additional validation if needed
 
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the back end
-            console.log('Review submitted successfully:', data);
+        // Send form data to your back end
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/reviews`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
         })
-        .catch(error => {
-            console.error('Error submitting review:', error);
-        });
+
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the back end if needed
+                console.log('Review submitted successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error submitting review:', error);
+            });
     };
 
     return (
@@ -50,10 +51,6 @@ function ReviewForm({ albumData }) {
             {/* Form for submitting reviews */}
             <Form onSubmit={handleSubmit}>
                 {/* Fields for artist, album title, and username */}
-                <Form.Group className="mb-3">
-                    <Form.Label>User</Form.Label>
-                    <Form.Control placeholder={userName} disabled />
-                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Artist</Form.Label>
                     <Form.Control placeholder={albumData.results[0].artistName} disabled />
@@ -63,7 +60,8 @@ function ReviewForm({ albumData }) {
                     <Form.Control placeholder={albumData.results[0].collectionName} disabled />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Control placeholder={albumData.results[0].collectionId} disabled/>
+                    <Form.Label>Album Id</Form.Label>
+                    <Form.Control placeholder={albumData.results[0].collectionId} hidden />
                 </Form.Group>
 
                 {/* Dropdown for rating */}
@@ -110,4 +108,3 @@ function ReviewForm({ albumData }) {
 }
 
 export default ReviewForm;
-
