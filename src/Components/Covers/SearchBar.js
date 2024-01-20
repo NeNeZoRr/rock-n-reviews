@@ -1,5 +1,3 @@
-// Components/Covers/SearchBar.js
-// Displays a search bar with options to search and clear
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 

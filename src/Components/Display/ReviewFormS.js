@@ -27,8 +27,6 @@ function ReviewForm({ songData }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Perform any additional validation if needed
-
         // Send form data to your back end
         fetch(`${process.env.REACT_APP_BACKEND_URL}/song-reviews`, {
             method: 'POST',

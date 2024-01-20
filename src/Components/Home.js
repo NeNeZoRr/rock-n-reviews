@@ -1,5 +1,3 @@
-// Components/Home.js
-// Main component for the home page
 import React, { useState, useEffect } from "react";
 import { Carousel, Card, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";

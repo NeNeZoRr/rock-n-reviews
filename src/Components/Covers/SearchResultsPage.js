@@ -1,6 +1,3 @@
-// Components/Covers/SearchResultsPage.js
-// Displays search results or a message if no results are found
-
 import React from 'react';
 import Gallery from './Gallery';
 
@@ -16,7 +13,7 @@ function SearchResultsPage({ searchResults }) {
                 // Display "No results found" only when there are no results and they are not being fetched
                 searchResults === null && <p>No results found.</p>
             )}
-            {/* Add any additional content or styling for the search results page here */}
+        
         </div>
     );
 }

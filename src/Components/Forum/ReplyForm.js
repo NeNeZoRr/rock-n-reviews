@@ -1,5 +1,3 @@
-// Components/Forum/ReplyForm.js
-// Component for submitting replies to topics
 import React, { useState } from 'react';
 import axios from 'axios';
 
