@@ -23,17 +23,28 @@ function SearchBar({ handleSearch, clearSearchTerm }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={handleInputChange}
-                placeholder="Discover your next beat"
-            />
-            <button type="submit">Search</button>
-            <button type="button" onClick={handleClearSearch}>
-                Clear
-            </button>
-        </form>
+        <input
+            style={{
+                width: "30vw",
+                height: "2rem",
+                borderRadius: "8px",
+                marginRight: ".5rem",
+            }}
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="Discover your next beat"
+        />
+        <button style={{ width: "5rem", borderRadius: "8px" }} type="submit">
+            Search
+        </button>
+        <button
+            style={{ width: "5rem", marginLeft: ".5rem", borderRadius: "8px" }}
+            type="button"
+            onClick={handleClearSearch}>
+            Clear
+        </button>
+    </form>
     );
 }
 
