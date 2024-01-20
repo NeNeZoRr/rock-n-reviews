@@ -61,7 +61,11 @@ function Home() {
 
 	// Render the Home component with different sections
 	return (
-		<div style={{ border: "4px solid black", padding: "1px" }}>
+		<div
+			style={{
+				border: "4px solid black",
+				padding: "1px",
+			}}>
 			{/* Search Section */}
 			<section style={{ padding: "10px" }} className="search-section">
 				<SearchBar

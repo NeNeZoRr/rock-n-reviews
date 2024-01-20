@@ -27,7 +27,7 @@ function AlbumView() {
 	}, [id]);
 
 	const albumDisplay = (
-		<Container style={{ width: "100dvw" }}>
+		<Container style={{ height: "100vh", width: "100dvw" }}>
 			<Row xs={1} md={4}>
 				{albumData.results.map((song) => (
 					<Col key={song.trackId}>
@@ -57,7 +57,12 @@ function AlbumView() {
 		<div>
 			{albumDisplay}
 			<Button
-				style={{ width: "25vw", position: "relative", left: "37vw" }}
+				style={{
+					width: "25vw",
+					position: "relative",
+					left: "37vw",
+					bottom: "38vh",
+				}}
 				className="albumButton"
 				variant="secondary"
 				size="sm"

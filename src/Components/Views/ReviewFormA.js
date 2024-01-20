@@ -7,7 +7,13 @@ function ReviewForm({ albumData }) {
 	// console.log(albumData)
 	return (
 		<div>
-			<Card style={{ width: "40vw", position: "relative", left: "28vw" }}>
+			<Card
+				style={{
+					width: "40vw",
+					position: "relative",
+					left: "28vw",
+					bottom: "38vh",
+				}}>
 				<Form>
 					<Form.Group className="mb-3">
 						<Form.Label>Artist</Form.Label>

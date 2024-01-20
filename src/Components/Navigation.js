@@ -12,9 +12,9 @@ function Navigation() {
 		<Navbar
 			style={{
 				width: "100vw",
-				background: "rgb(118,134,179)",
+				background: "rgb(5,0,68)",
 				background:
-					"linear-gradient(90deg, rgba(118,134,179,1) 0%, rgba(9,39,121,1) 48%, rgba(118,134,179,1) 100%)",
+					"linear-gradient(135deg, rgba(5,0,68,1) 0%, rgba(253,123,45,1) 100%)",
 			}}
 			className="bg-light-grey">
 			<Container className="NavBar">
@@ -25,7 +25,10 @@ function Navigation() {
 							alignItems: "center",
 							marginLeft: "-10rem",
 						}}>
-						<Navbar.Brand style={{ fontSize: "1.5em" }} as={Link} to="/">
+						<Navbar.Brand
+							style={{ color: "white", fontSize: "1.5em" }}
+							as={Link}
+							to="/">
 							Rock-n-Reviews
 						</Navbar.Brand>
 					</div>
