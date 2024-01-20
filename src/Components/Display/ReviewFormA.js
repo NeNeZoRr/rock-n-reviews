@@ -54,7 +54,7 @@ function ReviewForm({ albumData }) {
 					position: "relative",
 					left: "28vw",
 				}}>
-				<Form>
+				<Form onSubmit={handleSubmit}>
 					<Form.Group className="mb-3">
 						<Form.Label>Artist</Form.Label>
 						<Form.Control
@@ -75,7 +75,11 @@ function ReviewForm({ albumData }) {
 						style={{ marginBottom: "1rem" }}
 						controlId="floatingSelect"
 						label="Rating">
-						<Form.Select aria-label="Floating label select example">
+						<Form.Select
+							name="rating"
+							onChange={handleInputChange}
+							value={formData.rating}
+							aria-label="Floating label select example">
 							<option>Best out of 5</option>
 							<option value="1">One</option>
 							<option value="2">Two</option>
@@ -91,6 +95,9 @@ function ReviewForm({ albumData }) {
 							as="textarea"
 							placeholder="Tell us how you really feel"
 							style={{ height: "100px" }}
+							name="comments"
+							onChange={handleInputChange}
+							value={formData.comments}
 						/>
 					</FloatingLabel>
 					{/* discriptive text under fields of input */}
