@@ -52,7 +52,7 @@ function SongReviewsList() {
         const confirmUpdate = window.confirm('Are you sure you want to update the comments?');
         if (!confirmUpdate) return;
 
-        fetch(`http://localhost:8080/reviews/songs/${reviewId}`, {
+        fetch(`http://localhost:8080/song-reviews/${reviewId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
