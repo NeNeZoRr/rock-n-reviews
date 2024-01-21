@@ -70,7 +70,7 @@ function ReviewForm({ albumData }) {
 					</Form.Group>
 
 					{/* Dropdown for rating */}
-					<FloatingLabel controlId="floatingSelect" label="Rating">
+					<FloatingLabel controlId="floatingSelect" label="Rating" style={{ marginBottom: "1rem" }}>
 						<Form.Select
 							aria-label="Floating label select example"
 							name="rating"
