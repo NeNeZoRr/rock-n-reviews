@@ -30,13 +30,21 @@
     gap: 20px;
 }
 
-/* Add the following media query for responsiveness */
+/* Add the following media query for centering on smaller displays */
 @media screen and (max-width: 768px) {
     .link {
-        left: 0; /* Adjust the left positioning for smaller screens */
+        left: 0;
+    }
+
+    .container,
+    .card,
+    .card-text,
+    .cardGridItem {
+        justify-content: center; 
+        text-align: center; 
     }
 
     .cardGridItem {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Adjust the grid for smaller screens */
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
     }
 }
