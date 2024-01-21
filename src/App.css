@@ -1,8 +1,8 @@
-app.css
 .link {
     position: relative;
     left: 5vw;
 }
+
 .container {
     justify-content: center;
 }
@@ -14,11 +14,9 @@ app.css
     margin: 1rem;
 }
 
-.card{
-    /* background: rgb(180,58,58);
-    background: linear-gradient(90deg, rgba(180,58,58,0.8575805322128851) 0%, rgba(255,246,145,0.8995973389355743) 50%, rgba(180,58,58,0.86) 100%); */
-    background: rgb(118,134,179);
-    background: linear-gradient(90deg, rgba(118,134,179,1) 0%, rgba(9,39,121,1) 48%, rgba(118,134,179,1) 100%);
+.card {
+    background: rgb(118, 134, 179);
+    background: linear-gradient(90deg, rgba(118, 134, 179, 1) 0%, rgba(9, 39, 121, 1) 48%, rgba(118, 134, 179, 1) 100%);
 }
 
 .card-text {
@@ -30,4 +28,15 @@ app.css
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(25vw, 1fr));
     gap: 20px;
+}
+
+/* Add the following media query for responsiveness */
+@media screen and (max-width: 768px) {
+    .link {
+        left: 0; /* Adjust the left positioning for smaller screens */
+    }
+
+    .cardGridItem {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Adjust the grid for smaller screens */
+    }
 }
