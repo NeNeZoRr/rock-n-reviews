@@ -7,7 +7,8 @@
     justify-content: center;
 }
 
-.card-grid, .card {
+.card-grid,
+.card {
     padding: 5px 5px !important;
     height: auto !important;
     justify-content: center;
@@ -40,11 +41,31 @@
     .card,
     .card-text,
     .cardGridItem {
-        justify-content: center; 
-        text-align: center; 
+        justify-content: center;
+        text-align: center;
     }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .Navbar-brand {
+        margin-bottom: 1rem;
+    }
+
+    .navbar-collapse {
+        justify-content: center;
+    }
+
+    .navbar-nav {
+        margin-right: 0;
 
     .cardGridItem {
         grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+
+        
+        }
     }
 }
