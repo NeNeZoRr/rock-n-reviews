@@ -99,7 +99,7 @@ function ReviewForm({ albumData }) {
 					</FloatingLabel>
 
 					{/* Descriptive text under input fields */}
-					<Form.Text id="passwordHelpBlock" muted>
+					<Form.Text style={{ color: "white" }} id="passwordHelpBlock">
 						Leave a review for this artist's Album or Song and tell us how you really feel
 					</Form.Text>
 
