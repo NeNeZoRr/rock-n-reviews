@@ -28,7 +28,7 @@ function SongReviewsList() {
         const confirmDelete = window.confirm('Are you sure you want to delete this review?');
         if (!confirmDelete) return;
 
-        fetch(`http://localhost:8080/song-reviews/${reviewId}`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/song-reviews/${reviewId}`, {
             method: 'DELETE',
         })
             .then(response => {
@@ -52,7 +52,7 @@ function SongReviewsList() {
         const confirmUpdate = window.confirm('Are you sure you want to update the comments?');
         if (!confirmUpdate) return;
 
-        fetch(`http://localhost:8080/song-reviews/${reviewId}`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/song-reviews/${reviewId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -38,8 +38,8 @@ function ReviewsList() {
                 setReviews(reviews.filter(review => review._id !== reviewId));
             })
             .catch(error => {
-                console.error('Error deleting review:', error.message);
-                alert('Error deleting review. Please try again.');
+                console.error('Error deleting album review:', error.message);
+                alert('Error deleting song review. Please try again.');
             });
     };
 
@@ -71,7 +71,7 @@ function ReviewsList() {
                 console.error('Error updating review:', error.message);
                 alert('Error updating review. Please try again.');
             });
-    };
+    };;
 
 
     // Get top 10 rated albums
