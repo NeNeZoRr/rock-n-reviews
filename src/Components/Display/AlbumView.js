@@ -79,7 +79,7 @@ function AlbumView() {
 				variant="secondary"
 				size="sm"
 				onClick={() => setShowForm(!showForm)}>
-				Review this song
+				Review this Album
 			</Button>
 			{showForm && <ReviewForm albumData={albumData} />}
 			{albumDisplay}
